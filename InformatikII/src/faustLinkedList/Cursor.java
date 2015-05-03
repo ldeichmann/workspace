@@ -4,9 +4,11 @@ import java.util.Iterator;
 
 class Cursor<E extends Comparable<E>> implements Iterator<E> {
 	private Zelle<E> z;
-
+	private Zelle<E> anker;
+	
 	Cursor(Zelle<E> z) {
 		this.z = z;
+		this.anker = z;
 	}
 
 	// Navigation
@@ -47,12 +49,13 @@ class Cursor<E extends Comparable<E>> implements Iterator<E> {
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
-		return false;
+		return !atEnd();
 	}
 
 	@Override
 	public E next() {
 		// TODO Auto-generated method stub
-		return null;
+		goToNext();
+		return get();
 	}
 }

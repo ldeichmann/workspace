@@ -1,11 +1,9 @@
 package faustLinkedList;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-class LinkedList<E extends Comparable<E>> implements List<E> {
+abstract class LinkedList<E extends Comparable<E>> implements List<E> {
 	private Zelle<E> anker;
 	private Cursor<E> cursor;
 
@@ -53,33 +51,63 @@ class LinkedList<E extends Comparable<E>> implements List<E> {
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
+		cursor.goToFirst();
+		while (cursor.hasNext()) {
+			
+			cursor.remove();
+			
+		}
 		
 	}
 
-	@Override
-	public boolean contains(Object arg0) {
+	public boolean contains(E e) {
 		// TODO Auto-generated method stub
+		cursor.goToFirst();
+		while (cursor.hasNext()) {
+			
+			if (cursor.get().equals(e)) {
+				return true;
+			}
+			cursor.next();
+		}
 		return false;
 	}
 
-	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public E remove(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		cursor.goToFirst();
+		return cursor.hasNext();
 	}
 
-	@Override
+	public E remove(E e) {
+		cursor.goTo(e);
+		E f = cursor.get();
+		cursor.remove();
+		// TODO Auto-generated method stub
+		return f;
+	}
+
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		int i = 0;
+		cursor.goToFirst();
+		while (cursor.hasNext()) {
+			i++;
+			cursor.next();
+		}		
+		return i;
 	}
 	
 	E getMatch(E e) {
+		
+		cursor.goToFirst();
+		while (cursor.hasNext()) {
+			
+			if (cursor.get().equals(e)) {
+				return cursor.get();
+			}
+			cursor.next();
+		}
 		
 		return null;
 	}

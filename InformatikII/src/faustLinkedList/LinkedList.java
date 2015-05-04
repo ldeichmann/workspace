@@ -1,11 +1,13 @@
 package faustLinkedList;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-abstract class LinkedList<E extends Comparable<E>> implements List<E> {
-	private Zelle<E> anker;
-	private Cursor<E> cursor;
+class LinkedList<E extends Comparable<E>> implements List<E> {
+	private Zelle<E> anker = new Zelle<E>(null, null);
+	private Cursor<E> cursor = new Cursor<E>(anker);
 
 	public void goToFirst() {
 		cursor.goToFirst();
@@ -60,18 +62,17 @@ abstract class LinkedList<E extends Comparable<E>> implements List<E> {
 		
 	}
 
-	public boolean contains(E e) {
-		// TODO Auto-generated method stub
-		cursor.goToFirst();
-		while (cursor.hasNext()) {
-			
-			if (cursor.get().equals(e)) {
-				return true;
-			}
-			cursor.next();
-		}
-		return false;
-	}
+//	public boolean contains(E e) {
+//		cursor.goToFirst();
+//		while (cursor.hasNext()) {
+//			
+//			if (cursor.get().equals(e)) {
+//				return true;
+//			}
+//			cursor.next();
+//		}
+//		return false;
+//	}
 
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
@@ -83,12 +84,10 @@ abstract class LinkedList<E extends Comparable<E>> implements List<E> {
 		cursor.goTo(e);
 		E f = cursor.get();
 		cursor.remove();
-		// TODO Auto-generated method stub
 		return f;
 	}
 
 	public int size() {
-		// TODO Auto-generated method stub
 		int i = 0;
 		cursor.goToFirst();
 		while (cursor.hasNext()) {
@@ -96,6 +95,10 @@ abstract class LinkedList<E extends Comparable<E>> implements List<E> {
 			cursor.next();
 		}		
 		return i;
+	}
+	
+	LinkedList() {
+
 	}
 	
 	E getMatch(E e) {
@@ -109,6 +112,121 @@ abstract class LinkedList<E extends Comparable<E>> implements List<E> {
 			cursor.next();
 		}
 		
+		return null;
+	}
+
+	@Override
+	public void add(int index, E element) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean addAll(Collection<? extends E> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addAll(int index, Collection<? extends E> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean contains(Object o) {
+		cursor.goToFirst();
+		while (cursor.hasNext()) {
+			
+			if (cursor.get().equals(o)) {
+				return true;
+			}
+			cursor.next();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean containsAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public E get(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int indexOf(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int lastIndexOf(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ListIterator<E> listIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ListIterator<E> listIterator(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean remove(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public E remove(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean removeAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean retainAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public E set(int index, E element) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<E> subList(int fromIndex, int toIndex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> T[] toArray(T[] a) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

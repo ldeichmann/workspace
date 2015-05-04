@@ -1,14 +1,15 @@
 package faustLinkedList;
 
 import java.util.Collection;
+import faustLinkedList.LinkedList;
 import java.util.Iterator;
 import java.util.Set;
 
+
 public class LinkedListSet<E extends Comparable<E>> implements Set<E> {
 
-	private LinkedList<E> ll;
+	private LinkedList<E> ll = new  LinkedList<E>();
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(E arg0) {
 		if (!ll.contains(arg0)) {
@@ -38,6 +39,7 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E> {
 
 	@Override
 	public boolean contains(Object arg0) {
+//		System.out.println("CONTAINS " + arg0);
 		return ll.contains(arg0);
 	}
 
@@ -97,7 +99,6 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return ll.size();
 	}
 

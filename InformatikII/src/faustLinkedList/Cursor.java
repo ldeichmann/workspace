@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 class Cursor<E extends Comparable<E>> implements Iterator<E> {
 	private Zelle<E> z;
-	private Zelle<E> anker;
+	private Zelle<E> anker = z;
 	
 	Cursor(Zelle<E> z) {
 		this.z = z;
@@ -33,6 +33,7 @@ class Cursor<E extends Comparable<E>> implements Iterator<E> {
 
 	// Listenmodifikation und Inspektion
 	void add(E e) {
+//		System.out.println("new Zelle for " + e + " after " + z.inhalt);
 		z.next = new Zelle<E>(e, z.next);
 		goToNext();
 	}
@@ -43,7 +44,11 @@ class Cursor<E extends Comparable<E>> implements Iterator<E> {
 	}
 
 	E get() {
-		return z.next.inhalt;
+		if (!atEnd()) {
+			return z.next.inhalt;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -55,7 +60,8 @@ class Cursor<E extends Comparable<E>> implements Iterator<E> {
 	@Override
 	public E next() {
 		// TODO Auto-generated method stub
+		E e = get();
 		goToNext();
-		return get();
+		return e;
 	}
 }

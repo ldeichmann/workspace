@@ -9,6 +9,15 @@ public class Auto {
 	private String Kraftstoff;
 	private double Leistung;
 	
+	/**
+	 * @param h Hersteller
+	 * @param l Laufleistung in KM
+	 * @param p Preis in EUR
+	 * @param f Farbe
+	 * @param u Unfallwagen
+	 * @param k Kraftstoffart
+	 * @param le Leistung in PS
+	 */
 	Auto(String h, long l, double p, String f, boolean u, String k, double le) {
 
 		this.Hersteller = h;
@@ -21,30 +30,51 @@ public class Auto {
 
 	}
 
+	/**
+	 * @return Hersteller
+	 */
 	public String getHersteller() {
 		return Hersteller;
 	}
 
+	/**
+	 * @return Laufleistung in KM
+	 */
 	public long getLaufleistung() {
 		return Laufleistung;
 	}
 
+	/**
+	 * @return Preis in EUR
+	 */
 	public double getPreis() {
 		return Preis;
 	}
 
+	/**
+	 * @return Farbe
+	 */
 	public String getFarbe() {
 		return Farbe;
 	}
 
+	/**
+	 * @return Unfallwagen
+	 */
 	public boolean isUnfallwagen() {
 		return Unfallwagen;
 	}
 
+	/**
+	 * @return Kraftstoffart
+	 */
 	public String getKraftstoff() {
 		return Kraftstoff;
 	}
 
+	/**
+	 * @return Leistung in PS
+	 */
 	public double getLeistung() {
 		return Leistung;
 	}
@@ -63,6 +93,10 @@ public class Auto {
 		return str.toString();
 	}
 	
+	/**
+	 * @param autos Auto Array
+	 * @return Anteil der Unfallwagen im gegebenen Array
+	 */
 	public static double anteil_unfallwagen(Auto[] autos) {
 		int unfallwagen = 0;
 
@@ -73,6 +107,11 @@ public class Auto {
 		return ((double) unfallwagen / (double) autos.length) * 100;
 	}
 
+	/**
+	 * @param autos Auto Array
+	 * @param kraftstoff Gesuchter Kraftstoff
+	 * @return Anteil der Fahrzeuge im Array, die den gesuchten Kraftstoff verwenden
+	 */
 	public static double anteil_kraftstoffart(Auto[] autos, String kraftstoff) {
 		int kraftstoffvorkommen = 0;
 
@@ -85,6 +124,12 @@ public class Auto {
 
 	}
 
+	/**
+	 * @param autos Auto Array
+	 * @param uf Nachlass unfallfreier Wagen
+	 * @param u Nachlass Unfallwagen
+	 * @return Erlös der Fahrzeuge im Array mit entsprechenden Nachlässen
+	 */
 	public static double erloes_inkl_nachlass(Auto[] autos, double uf, double u) {
 		double erloes = 0.0;
 
@@ -97,6 +142,10 @@ public class Auto {
 		return erloes;
 	}
 	
+	/**
+	 * Sortiert absteigend die Fahrzeuge im Array
+	 * @param autos Auto Array
+	 */
 	public static void bubbleSort(Auto[] autos) {
 		boolean unsorted = true;
 		while (unsorted) {
@@ -112,6 +161,9 @@ public class Auto {
 		}
 	}
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		Auto[] autobestand = {

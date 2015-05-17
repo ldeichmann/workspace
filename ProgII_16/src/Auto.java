@@ -13,6 +13,15 @@ public class Auto {
 	private String Kraftstoff;
 	private double Leistung;
 
+	/**
+	 * @param h
+	 * @param l
+	 * @param p
+	 * @param f
+	 * @param u
+	 * @param k
+	 * @param le
+	 */
 	Auto(String h, long l, double p, String f, boolean u, String k, double le) {
 
 		this.Hersteller = h;
@@ -27,30 +36,51 @@ public class Auto {
 
 	}
 
+	/**
+	 * @return Hersteller
+	 */
 	public String getHersteller() {
 		return Hersteller;
 	}
 
+	/**
+	 * @return Laufleistung in KM
+	 */
 	public long getLaufleistung() {
 		return Laufleistung;
 	}
 
+	/**
+	 * @return Preis in EUR
+	 */
 	public double getPreis() {
 		return Preis;
 	}
 
+	/**
+	 * @return Farbe
+	 */
 	public String getFarbe() {
 		return Farbe;
 	}
 
+	/**
+	 * @return Unfallwagen
+	 */
 	public boolean isUnfallwagen() {
 		return Unfallwagen;
 	}
 
+	/**
+	 * @return Kraftstoffart
+	 */
 	public String getKraftstoff() {
 		return Kraftstoff;
 	}
 
+	/**
+	 * @return Leistung in PS
+	 */
 	public double getLeistung() {
 		return Leistung;
 	}
@@ -69,6 +99,9 @@ public class Auto {
 		return str.toString();
 	}
 
+	/**
+	 * Sortiert absteigend die Fahrzeuge im Bestand
+	 */
 	public static void bubbleSort() {
 		boolean unsorted = true;
 		List<Auto> autos = getBestand();
@@ -84,17 +117,10 @@ public class Auto {
 			}
 		}
 	}
-
-	public static double verkaufserloes() {
-		double erloes = 0;
-
-		for (Auto a : bestand) {
-			erloes = erloes + a.getPreis();
-		}
-
-		return erloes;
-	}
-
+	
+	/**
+	 * @return Anteil der Unfallwagen im Fahrzeugbestand
+	 */
 	public static double anteil_unfallwagen() {
 		int unfallwagen = 0;
 
@@ -105,6 +131,10 @@ public class Auto {
 		return ((double) unfallwagen / (double) Auto.getAnzahl()) * 100;
 	}
 
+	/**
+	 * @param kraftstoff Gesuchter Kraftstoff
+	 * @return Anteil der Fahrzeuge im Bestand, die den gesuchten Kraftstoff verwenden
+	 */
 	public static double anteil_kraftstoffart(String kraftstoff) {
 		int kraftstoffvorkommen = 0;
 
@@ -116,7 +146,12 @@ public class Auto {
 		return ((double) kraftstoffvorkommen / (double) Auto.getAnzahl()) * 100;
 
 	}
-
+	
+	/**
+	 * @param uf Nachlass unfallfreier Wagen
+	 * @param u Nachlass Unfallwagen
+	 * @return Erlös der Fahrzeuge im Bestand mit entsprechenden Nachlässen
+	 */
 	public static double erloes_inkl_nachlass(double uf, double u) {
 		double erloes = 0.0;
 
@@ -129,14 +164,23 @@ public class Auto {
 		return erloes;
 	}
 
+	/**
+	 * @return Bestand aller Fahrzeuge
+	 */
 	public static List<Auto> getBestand() {
 		return bestand;
 	}
 
+	/**
+	 * @return Anzahl der Fahrzeuge im aktuellen Bestand
+	 */
 	public static int getAnzahl() {
 		return bestand.size();
 	}
 
+	/**
+	 * Setzt den Bestand zurück
+	 */
 	public static void resetBestand() {
 		bestand.clear();
 	}

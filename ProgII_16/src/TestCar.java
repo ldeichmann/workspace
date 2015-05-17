@@ -43,33 +43,32 @@ public class TestCar {
 	public void testCalcs() {
 		Auto.resetBestand();
 
-		Auto[] autobestand = {
-				new Auto("Ford", 125000, 7999.99, "silber metallic", false,
-						"Diesel", 101.0),
-				new Auto("Mercedes", 63000, 22999.99, "blue silver", true,
-						"Super", 137.0),
-				new Auto("Daihatsu", 12000, 3099.99, "green dynamite", false,
-						"Benzin", 75.0),
-				new Auto("Ford", 1700, 17999.99, "silber metallic", false,
-						"Diesel", 101.0),
-				new Auto("Mercedes", 63000, 22999.99, "blue silver", true,
-						"Elektro", 37.0),
-				new Auto("Daihatsu", 12000, 3099.99, "green dynamite", true,
-						"Benzin", 75.0),
-				new Auto("Ford", 12500, 12999.99, "silber metallic", false,
-						"Super", 121.0),
-				new Auto("Mercedes", 6300, 32999.99, "blue silver", false,
-						"Super", 137.0),
-				new Auto("Daihatsu", 12000, 3099.99, "green dynamite", true,
-						"Benzin", 75.0),
-				new Auto("Ford", 1700, 17999.99, "silber metallic", false,
-						"Diesel", 101.0),
-				new Auto("Mercedes", 63000, 22999.99, "blue silver", true,
-						"Elektro", 37.0),
-				new Auto("Daihatsu", 12000, 3099.99, "green dynamite", true,
-						"Benzin", 75.0) };
+		new Auto("Ford", 125000, 7999.99, "silber metallic", false,
+				"Diesel", 101.0);
+		new Auto("Mercedes", 63000, 22999.99, "blue silver", true,
+				"Super", 137.0);
+		new Auto("Daihatsu", 12000, 3099.99, "green dynamite", false,
+				"Benzin", 75.0);
+		new Auto("Ford", 1700, 17999.99, "silber metallic", false,
+				"Diesel", 101.0);
+		new Auto("Mercedes", 63000, 22999.99, "blue silver", true,
+				"Elektro", 37.0);
+		new Auto("Daihatsu", 12000, 3099.99, "green dynamite", true,
+				"Benzin", 75.0);
+		new Auto("Ford", 12500, 12999.99, "silber metallic", false,
+				"Super", 121.0);
+		new Auto("Mercedes", 6300, 32999.99, "blue silver", false,
+				"Super", 137.0);
+		new Auto("Daihatsu", 12000, 3099.99, "green dynamite", true,
+				"Benzin", 75.0);
+		new Auto("Ford", 1700, 17999.99, "silber metallic", false,
+				"Diesel", 101.0);
+		new Auto("Mercedes", 63000, 22999.99, "blue silver", true,
+				"Elektro", 37.0);
+		new Auto("Daihatsu", 12000, 3099.99, "green dynamite", true,
+				"Benzin", 75.0);
 		
-		System.out.println("Verkaufserlös: " + Auto.verkaufserloes());
+		System.out.println("Verkaufserlös: " + Auto.erloes_inkl_nachlass(0.0, 0.0));
 		System.out.println("Unfallwagen: " + Auto.anteil_unfallwagen());
 		System.out.println("Anteil an Feinstaubstreuern: "
 				+ Auto.anteil_kraftstoffart("Diesel"));
@@ -78,7 +77,7 @@ public class TestCar {
 		System.out.println("Verkaufserlös mit Nachlässen: "
 				+ Auto.erloes_inkl_nachlass(0.10, 0.25));
 	
-		assertTrue(Auto.verkaufserloes() == 171399.88
+		assertTrue(Auto.erloes_inkl_nachlass(0.0, 0.0) == 171399.88
 				&& Auto.anteil_unfallwagen() == 50.0
 				&& Auto.anteil_kraftstoffart("Diesel") == 25.0
 				&& Auto.anteil_kraftstoffart("Elektro") == 16.666666666666664

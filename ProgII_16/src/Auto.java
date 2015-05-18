@@ -1,6 +1,10 @@
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author lukas
+ * Hallo, dies ist ein Auto. Tolle Knolle.
+ */
 public class Auto {
 
 	static protected List<Auto> bestand = new LinkedList<Auto>();
@@ -122,6 +126,7 @@ public class Auto {
 	 * @return Anteil der Unfallwagen im Fahrzeugbestand
 	 */
 	public static double anteil_unfallwagen() {
+		if (getAnzahl() <= 0) return 0.0;
 		int unfallwagen = 0;
 
 		for (Auto a : bestand) {
@@ -136,6 +141,7 @@ public class Auto {
 	 * @return Anteil der Fahrzeuge im Bestand, die den gesuchten Kraftstoff verwenden
 	 */
 	public static double anteil_kraftstoffart(String kraftstoff) {
+		if (getAnzahl() <= 0 || kraftstoff == null) return 0.0;
 		int kraftstoffvorkommen = 0;
 
 		for (Auto a : bestand) {
@@ -153,6 +159,7 @@ public class Auto {
 	 * @return Erlös der Fahrzeuge im Bestand mit entsprechenden Nachlässen
 	 */
 	public static double erloes_inkl_nachlass(double uf, double u) {
+		if (getAnzahl() <= 0) return 0.0;
 		double erloes = 0.0;
 
 		for (Auto a : bestand) {
@@ -226,8 +233,7 @@ public class Auto {
 		System.out.println("Erlös mit Nachlass: "
 				+ Auto.erloes_inkl_nachlass(0.1, 0.25) + " EUR");
 		System.out.println("Prozentuale Steigerung des Erlöses: "
-				+ (1.0 - (Auto.erloes_inkl_nachlass(0.1, 0.25) / Auto
-						.erloes_inkl_nachlass(0.1, 0.1))) + "%");
+				+ ((((Auto.erloes_inkl_nachlass(0.1, 0.1) / (Auto.erloes_inkl_nachlass(0.1, 0.25))) -1)*100 + "%")));
 		System.out.println("Absolute Steigerung des Erlöses: "
 				+ (Auto.erloes_inkl_nachlass(0.1, 0.1) - (Auto
 						.erloes_inkl_nachlass(0.1, 0.25))) + " EUR");

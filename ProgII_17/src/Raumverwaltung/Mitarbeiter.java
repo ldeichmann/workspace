@@ -10,7 +10,7 @@ import java.util.List;
 public class Mitarbeiter extends Person {
 
 	private String email;
-	protected List<Reservierung> reservierungen = new LinkedList<Reservierung>();
+	protected List<Reservierung> buchungen = new LinkedList<Reservierung>();
 	
 	
 	/**
@@ -44,7 +44,8 @@ public class Mitarbeiter extends Person {
 		Reservierung res = new Reservierung(anfang, ende);
 		res.setRaum(r);
 		res.setBemerkung(s);
-		this.reservierungen.add(res);		
+		res.setMitarbeiter(this);
+		this.buchungen.add(res);		
 		
 		
 	}

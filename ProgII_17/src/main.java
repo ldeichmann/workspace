@@ -85,7 +85,7 @@ public class main {
 	
 	
 	public static void main(String args[]) {
-		a17_2();
+		a17_1();
 	}
 	
 }

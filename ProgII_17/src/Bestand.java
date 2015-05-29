@@ -22,7 +22,8 @@ public class Bestand {
 		double erloes = 0.0;
 
 		for (Auto a : bestand) {
-			erloes += a.erloes_inkl_nachlass(uf, u);
+			erloes += (a.isUnfallwagen()) ? a.getPreis() * (1.0 - u) : a
+					.getPreis() * (1.0 - uf);;
 		}
 
 		return erloes;

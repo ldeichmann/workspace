@@ -81,17 +81,7 @@ public class Auto {
 		}
 		
 	}
-	
-	
-	/**
-	 * @param uf Nachlass unfallfreier Wagen
-	 * @param u Nachlass Unfallwagen
-	 * @return Erlös dieses Fahrzeuges mit entsprechenden Nachlässen
-	 */
-	public double erloes_inkl_nachlass(double uf, double u) {
-		return (this.isUnfallwagen()) ? this.getPreis() * (1.0 - u) : this
-				.getPreis() * (1.0 - uf);
-	}
+
 	
 	/**
 	 * Entfernt dieses Objekt aus seinem Bestand

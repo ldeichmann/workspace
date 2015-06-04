@@ -10,6 +10,11 @@ public class Figur {
 	protected int Z;
 	private static List<Figur> figuren = new LinkedList<Figur>();
 	
+	/**
+	 * @param x X Position
+	 * @param y Y Position
+	 * @param z Z Position
+	 */
 	Figur(int x, int y, int z) {
 		
 		this.X = x;
@@ -19,18 +24,27 @@ public class Figur {
 		
 	}
 	
+	/**
+	 * @return Anzahl an Figuren
+	 */
 	static final int anzFiguren() {
 		
 		return figuren.size();
 		
 	}
 	
+	/**
+	 * @return Alle Figuren
+	 */
 	static final List<Figur> getAlleFiguren() {
 		
 		return figuren;
 		
 	}
 	
+	/**
+	 * @return Alle Figuren nach Z Achse aufsteigend sortiert
+	 */
 	static final Figur[] getZsortierteFiguren() {
 		
 		Figur[] xs = figuren.toArray(new Figur[figuren.size()]);
@@ -52,11 +66,17 @@ public class Figur {
 		
 	}
 
+	/**
+	 * Filtert Figuren nach Z Achse 
+	 * @param i minimum
+	 * @param j maximum
+	 * @param zsortierteFiguren zu sortierende Figuren
+	 * @return
+	 */
 	public static List<Figur> filterZ(int i, int j, Figur[] zsortierteFiguren) {
 		List<Figur> filteredFiguren = new LinkedList<Figur>();
 		for (Figur f : zsortierteFiguren) {
 			
-//			System.out.println(f.Z + " " + i);
 			if (f.Z >= i && f.Z <= j) {
 				filteredFiguren.add(f);
 			}

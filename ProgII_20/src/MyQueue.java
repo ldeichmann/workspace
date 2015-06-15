@@ -14,7 +14,7 @@ public class MyQueue<T> {
 	 */
 	public boolean enter(T t) {
 		try {
-			ll.add(ll.size(), t);
+			ll.add(0, t);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class MyQueue<T> {
 	public T leave() throws NoSuchElementException {
 
 		if (!isEmpty()) {
-			return ll.remove(0);
+			return ll.remove(ll.size()-1);
 		} else {
 			throw new NoSuchElementException();
 		}
@@ -52,7 +52,7 @@ public class MyQueue<T> {
 	 */
 	public T front() {
 		if (!isEmpty()) {
-			return ll.get(0);
+			return ll.get(ll.size()-1);
 		} else {
 			return null;
 		}

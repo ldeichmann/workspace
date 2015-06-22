@@ -48,11 +48,18 @@ public class IhreStrategie extends T3VersierterSpieler {
 		
 		
 		if (v == T3Konstanten.X) {
+			
+			//set into corner
+			//Note: the NichtVerlierer Player behaves differently
+			//when using 0,0 and 2,2, which counters this
+			//strategy, therefore 0,2 and 2,0 have to be used
 			if (nr == 1) {
 				s.setze_auf_feld(this, v, 0, 2);
 				return;
 			}
 			
+			
+			//opposite corner or bust
 			if (nr == 3) {
 				
 				if (feld[1][1] == T3Konstanten.O) {
@@ -62,7 +69,7 @@ public class IhreStrategie extends T3VersierterSpieler {
 				
 			}
 			
-			
+			//last free corner or bust
 			if (nr == 5) {
 				if (feld[1][1] == T3Konstanten.LEER) {
 					s.setze_auf_feld(this, v, 1, 1);
@@ -82,6 +89,8 @@ public class IhreStrategie extends T3VersierterSpieler {
 				}
 			}
 		} else {
+			
+			//middle or corner or bust
 			if (nr == 2) {
 				if (feld[1][1] == T3Konstanten.LEER) {
 					s.setze_auf_feld(this, v, 1, 1);
@@ -91,12 +100,16 @@ public class IhreStrategie extends T3VersierterSpieler {
 				return;
 			}
 			
+			// so, there are three cases in which random is able to beat us
+			// these involve the following quandaries, which we need to check
+			// for manually
+			
 			if (nr == 4) {
-	//			  |X| 
-	//			 -+-+-
-	//			 X|O| 
-	//			 -+-+-
-	//			  | | 
+//			  |X| 
+//			 -+-+-
+//			 X|O| 
+//			 -+-+-
+//			  | | 
 				if ((feld[1][1] == T3Konstanten.O)
 						&& (feld[0][1] == T3Konstanten.X)
 						&& (feld[1][0] == T3Konstanten.X)) {
@@ -105,11 +118,11 @@ public class IhreStrategie extends T3VersierterSpieler {
 				}
 
 				
-	//			  | |X
-	//			 -+-+-
-	//			  |O| 
-	//			 -+-+-
-	//			  |X| 
+//			  | |X
+//			 -+-+-
+//			  |O| 
+//			 -+-+-
+//			  |X| 
 				else if ((feld[1][1] == T3Konstanten.O)
 						&& (feld[0][2] == T3Konstanten.X)
 						&& (feld[2][1] == T3Konstanten.X)) {
@@ -117,11 +130,11 @@ public class IhreStrategie extends T3VersierterSpieler {
 					return;
 				}
 			
-	//			 X| | 
-	//			 -+-+-
-	//			  |O|  
-	//			 -+-+-
-	//			  |X|
+//			 X| | 
+//			 -+-+-
+//			  |O|  
+//			 -+-+-
+//			  |X|
 				else if ((feld[1][1] == T3Konstanten.O)
 						&& (feld[0][0] == T3Konstanten.X)
 						&& (feld[2][1] == T3Konstanten.X)) {
@@ -129,11 +142,11 @@ public class IhreStrategie extends T3VersierterSpieler {
 					return;
 				}
 		
-	//			  | |   |X| 
-	//			 -+-+- -+-+-
-	//			 X|O|X  |O| 
-	//			 -+-+- -+-+-
-	//			  | |   |X|		
+//			  | |   |X|  have we actually achieved xox
+//			 -+-+- -+-+- according to strategy, go for it
+//			 X|O|X  |O| 
+//			 -+-+- -+-+-
+//			  | |   |X|		
 				else if (feld[1][1] == T3Konstanten.O
 						&& (((feld[1][0] == T3Konstanten.X) && (feld[1][2] == T3Konstanten.X)) || ((s
 								.lese_feld()[2][0] == T3Konstanten.X) && (s
@@ -141,9 +154,9 @@ public class IhreStrategie extends T3VersierterSpieler {
 					s.setze_auf_feld(this, v, 0, 2);
 					return;
 				}
-	//			 x| |X
+	//			 x| |X opponent uses our strategy for 1, 3, counter it
 	//			 -+-+-
-	//			  |O|  or
+	//			  |O|  
 	//			 -+-+-
 	//			 X| |x
 				else if ((feld[1][1] == T3Konstanten.O)

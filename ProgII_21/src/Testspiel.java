@@ -10,7 +10,8 @@ public class Testspiel {
 				"Zufall"));
 		T3Starter.starte_partie(1000, new IhreStrategie("Lukas"), new CrazySpieler("Crazy"));
 		T3Starter.starte_partie(1000, new IhreStrategie("Lukas"), new NichtVerlierer("Prof. Kratzke"));
-
+		T3Starter.starte_partie(1000, new CrazySpieler("Crazy"), new ZufallsSpieler(
+				"Zufall"));
 	}
 
 }

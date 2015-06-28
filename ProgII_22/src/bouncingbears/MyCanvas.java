@@ -10,12 +10,18 @@ public class MyCanvas extends JPanel {
 
 	List<FigurenGruppe> figs = new LinkedList<FigurenGruppe>();
 	
+	/**
+	 * @param figs vararg of figures for this canvas
+	 */
 	public MyCanvas(FigurenGruppe... figs) {
 		for (FigurenGruppe f: figs) {
 			this.figs.add(f);
 		}
 	}
 	
+	/**
+	 * @return List of FigurenGruppens
+	 */
 	public List<FigurenGruppe> getFiguren() {
 		return figs;
 	}

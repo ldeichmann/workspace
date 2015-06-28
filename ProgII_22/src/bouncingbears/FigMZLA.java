@@ -43,10 +43,16 @@ public abstract class FigMZLA extends Figur {
 	 */
 	abstract double berechneFlaeche();
 	
+	/**
+	 * @return height
+	 */
 	public int getA() {
 		return A;
 	}
 
+	/**
+	 * @return width
+	 */
 	public int getB() {
 		return B;
 	}

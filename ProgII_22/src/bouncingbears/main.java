@@ -36,8 +36,23 @@ public class main {
 				new RWDreieck(0, 90, 1, 40, 100, Color.GREEN) // Partyhut
 																// (rechts)
 		);
+		FigurenGruppe gesicht1 = new FigurenGruppe(0, 0,
+				new Kreis(0, 0, 0, 100, Color.GRAY),
+				// Gesicht
+				new Kreis(0, -10, 1, 20, Color.RED),
+				// Nase
+				new Kreis(65, 65, -1, 40, Color.DARK_GRAY), // Linkes Ohr
+				new Kreis(-65, 65, -1, 40, Color.DARK_GRAY), // Rechtes Ohr
+				new Kreis(-25, 25, 1, 10, Color.WHITE),
+				// Linkes Auge
+				new Kreis(25, 25, 1, 10, Color.WHITE),
+				// Rechtes Auge
+				new Ellipse(0, -55, 1, 55, 15, Color.YELLOW), // Mund
+				new Rechteck(-80, 90, 1, 160, 20, Color.GREEN), // Hut (Krempe, unten)
+				new Rechteck(-40, 90, 1, 80, 100, Color.GREEN) // Hut (oben)
+				);
 
-		MyCanvas mc = new MyCanvas(baer1, baer2);
+		MyCanvas mc = new MyCanvas(baer1, baer2, gesicht1);
 		
 		JFrame mainFrame = new JFrame("Bouncing Bears");
 		mainFrame.add(mc);

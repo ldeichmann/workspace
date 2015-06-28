@@ -109,6 +109,10 @@ public class T3Spiel {
 	}
 	
 	
+	/**
+	 * compute next move
+	 * @return return winner or empty
+	 */
 	public char next() {
 		if (gewonnen(T3Konstanten.X)) return T3Konstanten.X;
 		if (gewonnen(T3Konstanten.O)) return T3Konstanten.O;

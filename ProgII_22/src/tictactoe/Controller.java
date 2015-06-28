@@ -56,11 +56,13 @@ public class Controller implements ActionListener {
 				"NichtVerlierer" };
 		String input = (String) JOptionPane.showInputDialog(null,
 				"Choose now...", "The Choice of a Lifetime",
-				JOptionPane.OK_OPTION, null, // Use
-												// default
-												// icon
+				JOptionPane.PLAIN_MESSAGE, null,
 				choices, // Array of choices
-				choices[1]); // Initial choice
+				choices[2]); // Initial choice
+		if (input==null) { // FUCK YOUR CANCEL
+			this.setEnemyClass();
+			return;
+		}
 		if (input.equals("IhreStrategie")) {
 			model.setEnemyClass(new IhreStrategie("Enemy"));
 		} else if (input.equals("Crazy")) {

@@ -72,7 +72,7 @@ public class main {
 					
 					if ((fg.X >= w && fg.DX > 0) || (fg.X <= -w && fg.DX < 0) || fg.DX == 0) {
 						
-						System.out.println(fg.X + " " + w);
+//						System.out.println(fg.X + " " + w);
 
 						Random rand = new Random();
 
@@ -89,7 +89,7 @@ public class main {
 
 					if ((fg.Y >= h && fg.DY > 0) || (fg.Y <= -h && fg.DY < 0) || fg.DY == 0) {
 						
-						System.out.println(fg.Y + " " + h);
+//						System.out.println(fg.Y + " " + h);
 						
 					    Random rand = new Random();
 

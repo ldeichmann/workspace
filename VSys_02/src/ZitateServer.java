@@ -30,10 +30,10 @@ public class ZitateServer {
 				// quote antworten
 				byte data[];
 				if (received.length() == 0) {
-					System.out.println("Random");
+//					System.out.println("Random");
 					data = getQuote(0).getBytes();
 				} else {
-					System.out.println("Not random");
+//					System.out.println("Not random");
 					data = getQuote(Integer.parseInt(received)).getBytes();
 				}
 				DatagramPacket packetOut = new DatagramPacket(data, data.length, packetIn.getAddress(), packetIn.getPort());

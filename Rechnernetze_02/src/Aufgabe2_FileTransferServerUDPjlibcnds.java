@@ -25,9 +25,10 @@ public class Aufgabe2_FileTransferServerUDPjlibcnds {
 
 	    while (true){
 		    dtgSock.receive(packet);
-		    System.out.print("*");
 		    // if receive an empty packet will indicate end of file
 		    if (packet.getLength()==0) break;
+
+		    System.out.print("*");
 		    receivedFrames++;
             fw.write(packet.getData(),0,packet.getLength());
 		    //fw.flush();

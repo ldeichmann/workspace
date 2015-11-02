@@ -6,7 +6,7 @@ import java.net.SocketException;
 public class UDPSocket {
 	private static final int BUFSIZE = 508;
 	private static String host = "127.0.0.1";
-	private static int port = 50000;
+	private static int port = 50001;
 	
 	public void send(String s) {
 

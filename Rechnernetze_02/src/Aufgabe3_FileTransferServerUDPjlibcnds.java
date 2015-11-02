@@ -28,6 +28,7 @@ public class Aufgabe3_FileTransferServerUDPjlibcnds {
 	    java.io.FileInputStream fr = new java.io.FileInputStream(comparisonFilename);
 	    int len = 0;
 	    int err = 0;
+	    int n = 0;
 	    
 	    
 	    while (true){
@@ -42,6 +43,7 @@ public class Aufgabe3_FileTransferServerUDPjlibcnds {
 //            	System.out.println(Arrays.toString(inBuf));
             	int nerr = err;
             	err = err + Tools.countBitErrorsInByteArray(inBuf, packet.getData());
+            	n++;
             	if (nerr < err ) {
                 	System.out.print(new String(inBuf));
                 	System.out.print(new String(packet.getData()));
@@ -56,5 +58,9 @@ public class Aufgabe3_FileTransferServerUDPjlibcnds {
 	    dtgSock.close();	// Close the Socket
 	    System.out.println("");
 	    System.out.println("Errors: " + err);
+	    System.out.println("--- ");
+//	    System.out.println("We recieved " + n + ", we got " + err + " errors");
+//	    System.out.println("Our loss was: " + Math.round(100.0 - (((double) n/ (double) err)*100.0)) + "%");
+
     }
 }

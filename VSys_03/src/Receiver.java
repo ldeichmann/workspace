@@ -1,3 +1,5 @@
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Receiver {
 
@@ -12,16 +14,21 @@ public class Receiver {
 		
 	}
 
-	public Receiver() {
+	public Receiver() throws UnknownHostException {
 		
-		this(new UDPSocket());
+		this(new UDPSocket(InetAddress.getByName("127.0.0.1"), 50000, 50001));
 		
 	}
 	
 	
 	public static void main(String args[]) {
 		
-		Receiver t = new Receiver(); 
+		try {
+			Receiver t = new Receiver();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 	}
 

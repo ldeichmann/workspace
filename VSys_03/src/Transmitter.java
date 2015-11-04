@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Transmitter {
 
@@ -24,15 +26,21 @@ public class Transmitter {
 	}
 
 
-	public Transmitter() {
+	public Transmitter() throws UnknownHostException {
 		
-		this(new UDPSocket());
+//		this(new UDPSocket(InetAddress.getByName("127.0.0.1"), 50001, 50000));
+		this(new UDPSocket(InetAddress.getByName("127.0.0.1"), 50001, 50000));
 		
 	}
 	
 	public static void main(String args[]) {
 		
-		Transmitter t = new Transmitter(); 
+		try {
+			Transmitter t = new Transmitter();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 	}
 

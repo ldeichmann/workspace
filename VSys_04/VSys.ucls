@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.cru.vsys_04.App" project="VSys_04" 
     file="/VSys_04/src/main/java/com/cru/vsys_04/App.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="346" y="145"/>    
+    <position height="95" width="114" x="441" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.cru.vsys_04.CLI" project="VSys_04" 
     file="/VSys_04/src/main/java/com/cru/vsys_04/CLI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="345" y="2"/>    
+    <position height="113" width="127" x="441" y="172"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.cru.vsys_04.Settings" project="VSys_04" 
     file="/VSys_04/src/main/java/com/cru/vsys_04/Settings.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="942" y="121"/>    
+    <position height="455" width="166" x="423" y="325"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.cru.vsys_04.TCPTransceiver" project="VSys_04" 
     file="/VSys_04/src/main/java/com/cru/vsys_04/TCPTransceiver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="343" y="480"/>    
+    <position height="113" width="165" x="41" y="172"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.cru.vsys_04.TCPTransmitter" project="VSys_04" 
     file="/VSys_04/src/main/java/com/cru/vsys_04/TCPTransmitter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="347" y="637"/>    
+    <position height="-1" width="-1" x="277" y="487"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.cru.vsys_04.TCPReceiver" project="VSys_04" 
     file="/VSys_04/src/main/java/com/cru/vsys_04/TCPReceiver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="643" y="476"/>    
+    <position height="-1" width="-1" x="105" y="490"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="com.cru.vsys_04.UDPTransceiver" project="VSys_04" 
     file="/VSys_04/src/main/java/com/cru/vsys_04/UDPTransceiver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="510" y="253"/>    
+    <position height="-1" width="-1" x="332" y="235"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -77,6 +77,7 @@
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="11">    
+    <bendpoint x="747" y="252"/>    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  

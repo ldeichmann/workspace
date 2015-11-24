@@ -20,13 +20,4 @@ public class UDPTransceiver {
 
     }
 
-
-    public static void main(String args[]) {
-        Settings settings = new Settings();
-        new CLI(settings, args);
-
-        new UDPTransceiver(settings);
-
-    }
-
 }

@@ -23,8 +23,10 @@ public class CLI {
         Options options = new Options();
 
         options.addOption("h", "help", false, "print this message");
-        options.addOption("l", "listen", false, "listen mode, for inbound connects" );
-        options.addOption("p", "local-port", false, "local port number" );
+        options.addOption("l", "listen", false, "listen mode, for inbound connects");
+        options.addOption("p", "local-port", false, "local port number");
+        options.addOption("t", "tcp", false, "TCP mode (default)");
+        options.addOption("u", "udp", false, "UDP mode");
         options.addOption(Option.builder("s").longOpt("source").hasArg().argName("ADDRESS").desc("local source address (ip or hostname)").valueSeparator('=').build());
 
 
@@ -53,11 +55,20 @@ public class CLI {
                     settings.setRemotePort(Integer.parseInt(argsRest.get(1)));
                 }
             }
-            // validate that block-size has been set
-            if( line.hasOption( "s" ) ) {
-                // print the value of block-size
-                settings.setSource(line.getOptionValue("s"));
+            
+            if (line.hasOption("t") && !line.hasOption("u")) {
+            	settings.setTCP(true);
             }
+
+            if (line.hasOption("u") && !line.hasOption("t")) {
+            	settings.setTCP(false);
+            }
+
+            if (line.hasOption("t") && line.hasOption("u")) {
+            	System.out.println("Error, don't choose UDP and TCP!");
+            	settings.setError(true);
+            }
+            
         }
         catch( ParseException exp ) {
             // oops, something went wrong

@@ -12,8 +12,13 @@ public class TCPTransceiver {
 	ServerSocket serverSocket;
 	Socket sock;
 
+	/**
+	 * Start TCP Transceiver using settings
+	 * @param settings
+	 */
 	public TCPTransceiver(Settings settings) {
 
+		// are we listening?
 		if (settings.isListenMode() && settings.getLocalPort() != 0) {
 
 			try {
@@ -29,7 +34,7 @@ public class TCPTransceiver {
 
 			// new Thread(TCPR)
 
-		} else {
+		} else { // nope
 
 			try {
 
@@ -42,19 +47,6 @@ public class TCPTransceiver {
 			}
 
 		}
-
-		// this.sock = new UDPSocket(settings);
-		// this.rec = new UDPReceiver(this.sock);
-		// this.trans = new UDPTransmitter(this.sock);
-		//
-		// if ( (settings.getRemotePort() != 0) || (settings.getLocalPort() !=
-		// 0) || (settings.getRemoteHost().length() > 6) ) {
-		//
-		// (new Thread(new UDPReceiver(this.sock))).start();
-		// (new Thread(new UDPTransmitter(this.sock))).start();
-		//
-		// }
-
 	}
 
 }

@@ -9,6 +9,10 @@ public class TCPReceiver implements Runnable {
 
 	Socket sock;
 	
+	/**
+	 * TCP Receiver
+	 * @param sock Opened Socket
+	 */
 	TCPReceiver(Socket sock) {
 		
 		this.sock = sock;
@@ -16,6 +20,9 @@ public class TCPReceiver implements Runnable {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));

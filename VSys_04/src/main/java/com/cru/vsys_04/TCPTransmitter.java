@@ -11,12 +11,19 @@ public class TCPTransmitter implements Runnable {
 
 	Socket sock;
 	
+	/**
+	 * TCP Transmitter
+	 * @param sock Opened socket
+	 */
 	TCPTransmitter(Socket sock) {
 		
 		this.sock = sock;
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		try {
 			PrintWriter out = new PrintWriter(sock.getOutputStream(), true);

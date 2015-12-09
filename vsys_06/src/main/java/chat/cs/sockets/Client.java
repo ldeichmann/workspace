@@ -12,8 +12,8 @@ public class Client {
 	private String ownName;
 	private Poller poller;
 
-	public Client() throws Exception {
-		Socket socket = new Socket("localhost", 8205);
+	public Client(String host, int port) throws Exception {
+		Socket socket = new Socket(host, port);
 		proxy  = new ServerProxy(socket);
 		gui    = new GUI(proxy);
 		poller = new Poller(proxy, gui);
@@ -29,7 +29,11 @@ public class Client {
 
 	public static void main(String[] args) {
 		try {
-			new Client().startClient();
+			if ((args.length == 0) || (args.length > 2)) {
+				System.out.println("usage: client <host> <port>");
+				return;
+			}
+			new Client(args[0], Integer.parseInt(args[1])).startClient();
 		} catch (Exception e) {System.err.println(e);}
 	} 
 } 

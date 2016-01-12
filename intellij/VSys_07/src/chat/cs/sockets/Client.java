@@ -22,7 +22,8 @@ public class Client {
 	public void startClient() throws Exception {
         ownName = gui.showLoginFrame();
         gui.showChatFrame();
-        proxy.login(ownName, new ViewProxy(this.vc.serverSocket.getInetAddress(), this.vc.serverSocket.getLocalPort()));
+//		System.out.println(this.vc.serverSocket.getInetAddress().getLocalHost());
+        proxy.login(ownName, new ViewProxy(this.vc.serverSocket.getInetAddress().getLocalHost(), this.vc.serverSocket.getLocalPort()));
 //        poller.setOwnName(ownName);
 //        poller.start();
 	}

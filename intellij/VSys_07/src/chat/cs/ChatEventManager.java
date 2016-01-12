@@ -24,13 +24,26 @@ public class ChatEventManager implements IChat {
   public void login(String name, IView ViewProxy) {
     if (!eventsMap.containsKey(name)) {
       eventsMap.put(name, ViewProxy);
-      ViewProxy.
       queueEventToAll(new ChatEvent(ChatEvent.LIST_UPDATE, getNames()));
     }
   } 
 
   public void comment(String name, String comment) {
-    queueEventToAll(new ChatEvent(ChatEvent.COMMENT, name + ": " + comment));
+      if (name.equals("Admin") && comment.substring(0, 5).contains("/kick")) {
+          try {
+              String kickname = comment.split(" ")[1];
+              if (eventsMap.containsKey(kickname)) {
+                  eventsMap.get(kickname).update(new ChatEvent(ChatEvent.COMMENT, "You've been kicked"));
+                  eventsMap.get(kickname).update(new ChatEvent(ChatEvent.LIST_UPDATE, new String[0]));
+                  logout(kickname);
+                  queueEventToAll(new ChatEvent(ChatEvent.COMMENT, name + " kicked " + kickname));
+              } else {
+                      eventsMap.get(name).update(new ChatEvent(ChatEvent.COMMENT, "no such user"));
+              }
+          } catch (Exception e) {e.printStackTrace();};
+      } else {
+          queueEventToAll(new ChatEvent(ChatEvent.COMMENT, name + ": " + comment));
+      }
   } 
 
   public ChatEvent poll(String name) {
@@ -44,7 +57,7 @@ public class ChatEventManager implements IChat {
     eventsMap.remove(name);
     queueEventToAll(new ChatEvent(ChatEvent.LIST_UPDATE, getNames()));
   } 
-  
+
   private String[] getNames() {
     String[] array = new String[eventsMap.size()];
     return eventsMap.keySet().toArray(array);

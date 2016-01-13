@@ -6,13 +6,17 @@ import chat.IView;
 import java.util.*;
 
 public class ChatEventManager implements IChat {
-    private Map<String, IView> eventsMap;
-    private List<String> mutedList = new ArrayList<String>();
+    private Map<String, IView> eventsMap; // map of clients and their ViewProxys
+    private List<String> mutedList = new ArrayList<String>(); // list of muted clients
 
     public ChatEventManager() {
         eventsMap = new HashMap<String, IView>();
     }
 
+    /**
+     * Send ChatEvent to every registered client
+     * @param evt
+     */
     private void queueEventToAll(ChatEvent evt) {
         for (IView q : eventsMap.values())
             try {
@@ -22,6 +26,11 @@ public class ChatEventManager implements IChat {
             }
     }
 
+    /**
+     * Register new client
+     * @param name Client name
+     * @param ViewProxy Client ViewProxy
+     */
     public void login(String name, IView ViewProxy) {
         if (!eventsMap.containsKey(name)) {
             eventsMap.put(name, ViewProxy);
@@ -29,7 +38,13 @@ public class ChatEventManager implements IChat {
         }
     }
 
-    public boolean isCommand(String name, String command) {
+    /**
+     * execute command if input begins with slash, else return false
+     * @param name
+     * @param command
+     * @return
+     */
+    private boolean isCommand(String name, String command) {
 
         if (command.substring(0, 1).contains("/")) {
             try {
@@ -75,12 +90,22 @@ public class ChatEventManager implements IChat {
 
     }
 
+    /**
+     * Send comment
+     * @param name Origin
+     * @param comment Message
+     */
     public void comment(String name, String comment) {
         if (!isCommand(name, comment) && !mutedList.contains(name)) {
             queueEventToAll(new ChatEvent(ChatEvent.COMMENT, name + ": " + comment));
         }
     }
 
+    /**
+     * Stub
+     * @param name
+     * @return
+     */
     public ChatEvent poll(String name) {
 //    if (!eventsMap.containsKey(name)) return null;
 //    Queue<ChatEvent> q = eventsMap.get(name);
@@ -88,11 +113,19 @@ public class ChatEventManager implements IChat {
         return null;
     }
 
+    /**
+     * Remove user from registered users
+     * @param name
+     */
     public void logout(String name) {
         eventsMap.remove(name);
         queueEventToAll(new ChatEvent(ChatEvent.LIST_UPDATE, getNames()));
     }
 
+    /**
+     * Get registered users.
+     * @return
+     */
     private String[] getNames() {
         String[] array = new String[eventsMap.size()];
         return eventsMap.keySet().toArray(array);

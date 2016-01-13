@@ -9,6 +9,9 @@ import java.net.Socket;
 import chat.*;
 import chat.cs.sockets.Message;
 
+/**
+ * Client side Socket sent to Server when connecting
+ */
 public class ViewProxy implements IView, Serializable {
 
 	private Socket socket;
@@ -22,10 +25,10 @@ public class ViewProxy implements IView, Serializable {
 		this.host = host;
 		this.port = port;
 	}
-	
+
 	@Override
 	public void update(ChatEvent evt) throws Exception {
-		
+
 		if (!this.connected) {
 			try {
 				this.socket = new Socket(this.host, this.port);
@@ -41,11 +44,11 @@ public class ViewProxy implements IView, Serializable {
 		if ( !( ( (Message)this.in.readObject() ).getMessageType() == Message.CONFIRM ) ) {
 			System.out.println("Error");
 		}
-		
+
 	}
 
-	
-	
-	
-	
+
+
+
+
 }

@@ -4,6 +4,9 @@ import chat.IView;
 
 import java.io.Serializable;
 
+/**
+ * Simple Message class.
+ */
 public class Message implements Serializable {
  
   private static final long serialVersionUID = 1L;

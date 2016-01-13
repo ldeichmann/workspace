@@ -11,6 +11,12 @@ public class Client {
 	private Poller poller;
 	private ViewCommunicator vc;
 
+    /**
+     * Create Client instance
+     * @param host server address
+     * @param port server port
+     * @throws Exception
+     */
 	public Client(String host, int port) throws Exception {
 		Socket socket = new Socket(host, port);
 		proxy  = new ServerProxy(socket);
@@ -19,6 +25,10 @@ public class Client {
         new Thread(this.vc).start();
 	}
 
+    /**
+     * start client
+     * @throws Exception
+     */
 	public void startClient() throws Exception {
         ownName = gui.showLoginFrame();
         gui.showChatFrame();

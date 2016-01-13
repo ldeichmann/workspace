@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Queue;
 
 /**
- * Created by lukas on 12/15/15.
+ * Simple ChatModel
  */
 public class ChatModel {
 

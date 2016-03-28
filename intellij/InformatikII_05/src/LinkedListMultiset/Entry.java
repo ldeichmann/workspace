@@ -1,6 +1,6 @@
 package LinkedListMultiset;
 
-interface Entry<E> extends Comparable<Entry<E>> {
+public interface Entry<E> extends Comparable<Entry<E>> {
     E getElement();
     int getCount();
     void incCount();

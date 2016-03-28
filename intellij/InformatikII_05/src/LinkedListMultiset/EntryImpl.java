@@ -5,7 +5,7 @@ public class EntryImpl<E extends Comparable> implements Entry<E> {
     private E element;
     private int count;
 
-    EntryImpl(E e) {
+    public EntryImpl(E e) {
         this.element = e;
         this.count = 1;
     }

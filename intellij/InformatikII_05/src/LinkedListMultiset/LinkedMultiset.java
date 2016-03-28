@@ -67,7 +67,7 @@ public class LinkedMultiset<E extends Comparable<E>> implements Multiset<E> {
 
     @Override
     public void clear() {
-
+        s.clear();
     }
 
     @Override
@@ -76,8 +76,16 @@ public class LinkedMultiset<E extends Comparable<E>> implements Multiset<E> {
         return s.getMatch(temp).getElement();
     }
 
+    public String toString() {
+        StringBuilder list = new StringBuilder();
+        for (Entry<E> e : s) {
+            list.append(e.toString() + "\n");
+        }
+        return list.toString();
+    }
+
     @Override
-    public Iterator iterator() {
-        return null; // fuck this
+    public Iterator<E> iterator() {
+        return null;
     }
 }

@@ -44,7 +44,7 @@ public class LinkedSet<E extends Comparable<E>> implements Set<E> {
     }
 
     @Override
-    public Iterator iterator() {
-        return (Iterator<E>) internalLinkedList.iterator();
+    public Iterator<E> iterator() {
+        return (Iterator<E>)  internalLinkedList.iterator();
     }
 }

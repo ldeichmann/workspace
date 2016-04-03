@@ -17,13 +17,13 @@ public class ListStack<E> implements Stack<E> {
     }
 
     public void pop() throws StackFehler {
-        if (istLeer()) throw new StackFehler("Stack ist leer");
+        if (istLeer()) throw new StackFehler("stack is empty");
 
         top = top.next;
 
     }
     public E top() throws StackFehler {
-        if (istLeer()) throw new StackFehler("Stack ist leer");
+        if (istLeer()) throw new StackFehler("stack is empty");
         return top.inhalt;
     }
 

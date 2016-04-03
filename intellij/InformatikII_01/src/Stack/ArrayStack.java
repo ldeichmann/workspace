@@ -9,20 +9,24 @@ public class ArrayStack<E> implements Stack<E>{
         top = -1;
     }
 
+    @Override
     public boolean istLeer() { return top == -1;}
 
-    public boolean istVoll() { return top+1 == array.length;}
+    private boolean istVoll() { return top+1 == array.length;}
 
+    @Override
     public void push (E e) throws StackFehler {
         if (istVoll()) throw new StackFehler("stack is full");
         array[++top] = e;
     }
 
+    @Override
     public void pop() throws StackFehler {
         if (istLeer()) throw new StackFehler("tack is empty");
         array[top--] = null; // Element löschen
     }
 
+    @Override
     public E top() throws StackFehler {
         if (istLeer()) throw new StackFehler("stack is empty");
         return array[top];

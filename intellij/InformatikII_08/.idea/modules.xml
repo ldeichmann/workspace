@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../InformatikII_04/InformatikII_04.iml" filepath="$PROJECT_DIR$/../InformatikII_04/InformatikII_04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../InformatikII_05/InformatikII_05.iml" filepath="$PROJECT_DIR$/../InformatikII_05/InformatikII_05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../InformatikII_06/InformatikII_06.iml" filepath="$PROJECT_DIR$/../InformatikII_06/InformatikII_06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../InformatikII_07/InformatikII_07.iml" filepath="$PROJECT_DIR$/../InformatikII_07/InformatikII_07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InformatikII_08.iml" filepath="$PROJECT_DIR$/InformatikII_08.iml" />
+    </modules>
+  </component>
+</project>

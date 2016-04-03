@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="wc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../InformatikII_04/out/artifacts/wc_jar/wc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

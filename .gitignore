@@ -20,10 +20,10 @@ hs_err_pid*
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
- .idea/workspace.xml
- .idea/tasks.xml
- .idea/dictionaries
- .idea/shelf
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/shelf
 
 # Sensitive or high-churn files:
 # .idea/dataSources.ids
@@ -33,8 +33,8 @@ hs_err_pid*
 # .idea/uiDesigner.xml
 
 # Gradle:
- .idea/gradle.xml
- .idea/libraries
+.idea/gradle.xml
+.idea/libraries
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml

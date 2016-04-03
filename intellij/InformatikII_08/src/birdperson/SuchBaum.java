@@ -194,5 +194,6 @@ public class SuchBaum<E extends Comparable<E>> extends BinBaum<E> implements Sor
             ausgabe.append(k.inhalt + "\n");
             k = successor(k);
         }
-        return ausgabe.toString();    }
+        return ausgabe.toString();
+    }
 }

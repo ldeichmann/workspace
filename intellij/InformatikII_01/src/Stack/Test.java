@@ -10,11 +10,11 @@ public class Test {
     @org.junit.Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    /*
-     * ArrayStack Tests
-     */
+    /**
+     ** ArrayStack Tests
+     **/
 
-    /*
+    /**
      * Test stack creation
      */
     @org.junit.Test
@@ -27,7 +27,7 @@ public class Test {
         teststack.top(); // execution will never get past this line
     }
 
-    /*
+    /**
      * Test stack overflow
      */
     @org.junit.Test
@@ -42,7 +42,7 @@ public class Test {
         teststack.push('z'); // execution will never get past this line
     }
 
-    /*
+    /**
      * Test stack push
      */
     @org.junit.Test
@@ -57,7 +57,7 @@ public class Test {
         assertFalse(teststack.istLeer());
     }
 
-    /*
+    /**
      * Test stack popTop
      */
     @org.junit.Test
@@ -76,11 +76,28 @@ public class Test {
         assertTrue(out.reverse().toString().equals(example));
     }
 
-    /*
+    /**
+     * Test Multipop
+     */
+    @org.junit.Test
+    public void testArrayStack_multipop() throws StackFehler {
+        Stack<Integer> teststack = new ArrayStack<Integer>(10);
+        int i;
+        for (i = 0; i < 10; i++) {
+            teststack.push(i);
+        }
+        for (i = 9; i > 6; i--) {
+            teststack.pop();
+        }
+        assertTrue(teststack.top() == 6);
+
+    }
+
+    /**
      * ListStack Tests
      */
 
-    /*
+    /**
      * Test stack creation
      */
     @org.junit.Test
@@ -92,7 +109,7 @@ public class Test {
         teststack.top(); // execution will never get past this line
     }
 
-    /*
+    /**
      * Test stack push
      */
     @org.junit.Test
@@ -107,7 +124,7 @@ public class Test {
         assertFalse(teststack.istLeer());
     }
 
-    /*
+    /**
     * Test stack popTop
     */
     @org.junit.Test
@@ -123,6 +140,24 @@ public class Test {
             out.append(teststack.popTop());
         }
         assertTrue(out.reverse().toString().equals(example));
+
+    }
+
+
+    /**
+     * Test Multipop
+     */
+    @org.junit.Test
+    public void testListStack_multipop() throws StackFehler {
+        Stack<Integer> teststack = new ListStack<Integer>();
+        int i;
+        for (i = 0; i < 10; i++) {
+            teststack.push(i);
+        }
+        for (i = 9; i > 6; i--) {
+            teststack.pop();
+        }
+        assertTrue(teststack.top() == 6);
 
     }
 

@@ -18,7 +18,7 @@ public class Test {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
-	
+
 	@org.junit.Test
 	public void testFaust() {
 		

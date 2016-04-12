@@ -11,8 +11,8 @@ package lexer;
 public class ExprLexer extends Lexer {
     public static final int INT 	 	= 2;
     public static final int PLUS 	 	= 3;
-    public static final int MINUS  	= 4;
-    public static final int UMINUS	= 5;
+    public static final int MINUS   	= 4;
+    public static final int UMINUS	    = 5;
     public static final int MUL 	 	= 6;
     public static final int DIV 		= 7;
     public static final int POW 		= 8;

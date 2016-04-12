@@ -1,12 +1,18 @@
 package lexer;
 
-import Stack.*;
+import Stack.ListStack;
+import Stack.Stack;
 
 public class Postfix {
-
+    /**
+     * evaluates a postfix string containing the Operators listed in ExprLexer
+     * @see lexer.ExprLexer
+     * @param PostfixString
+     * @return
+     */
     public static int evalPostfix(String PostfixString) {
 
-        Stack<Token> pekerparter = new ListStack<Token>();
+        Stack<Token> tokenStack = new ListStack<Token>();
         ExprLexer luthlexor = new ExprLexer(PostfixString);
 
         Token currentToken = luthlexor.nextToken();
@@ -14,64 +20,57 @@ public class Postfix {
 
         while (currentToken.getType() != ExprLexer.EOF_TYPE) {
 
-//			System.out.print(currentToken.getType() + " ");
-//			System.out.println(currentToken.getText());
-
             switch ( currentToken.getType() ) {
-                // binary
+                /**
+                 * binary operators
+                  */
                 case ExprLexer.PLUS:
-                    v2 = Integer.parseInt(pekerparter.popTop().getText());
-                    v1 = Integer.parseInt(pekerparter.popTop().getText());
-                    pekerparter.push(new Token(ExprLexer.INT, String.valueOf(v1 + v2)));
+                    v2 = Integer.parseInt(tokenStack.popTop().getText());
+                    v1 = Integer.parseInt(tokenStack.popTop().getText());
+                    tokenStack.push(new Token(ExprLexer.INT, String.valueOf(v1 + v2)));
                     break;
 
                 case ExprLexer.MINUS:
-                    v2 = Integer.parseInt(pekerparter.popTop().getText());
-                    v1 = Integer.parseInt(pekerparter.popTop().getText());
-                    pekerparter.push(new Token(ExprLexer.INT, String.valueOf(v1 - v2)));
+                    v2 = Integer.parseInt(tokenStack.popTop().getText());
+                    v1 = Integer.parseInt(tokenStack.popTop().getText());
+                    tokenStack.push(new Token(ExprLexer.INT, String.valueOf(v1 - v2)));
                     break;
 
                 case ExprLexer.MUL:
-                    v2 = Integer.parseInt(pekerparter.popTop().getText());
-                    v1 = Integer.parseInt(pekerparter.popTop().getText());
-                    pekerparter.push(new Token(ExprLexer.INT, String.valueOf(v1 * v2)));
+                    v2 = Integer.parseInt(tokenStack.popTop().getText());
+                    v1 = Integer.parseInt(tokenStack.popTop().getText());
+                    tokenStack.push(new Token(ExprLexer.INT, String.valueOf(v1 * v2)));
                     break;
 
                 case ExprLexer.DIV:
-                    v2 = Integer.parseInt(pekerparter.popTop().getText());
-                    v1 = Integer.parseInt(pekerparter.popTop().getText());
-                    pekerparter.push(new Token(ExprLexer.INT, String.valueOf(v1 / v2)));
+                    v2 = Integer.parseInt(tokenStack.popTop().getText());
+                    v1 = Integer.parseInt(tokenStack.popTop().getText());
+                    tokenStack.push(new Token(ExprLexer.INT, String.valueOf(v1 / v2)));
                     break;
 
                 case ExprLexer.POW:
-                    v2 = Integer.parseInt(pekerparter.popTop().getText());
-                    v1 = Integer.parseInt(pekerparter.popTop().getText());
-                    pekerparter.push(new Token(ExprLexer.INT, String.valueOf((int) Math.pow(v1, v2))));
+                    v2 = Integer.parseInt(tokenStack.popTop().getText());
+                    v1 = Integer.parseInt(tokenStack.popTop().getText());
+                    tokenStack.push(new Token(ExprLexer.INT, String.valueOf((int) Math.pow(v1, v2))));
                     break;
 
 
-
-                // unary
+                /**
+                 * unary operators
+                 */
                 case ExprLexer.UMINUS:
-                    v1 = Integer.parseInt(pekerparter.popTop().getText());
-                    pekerparter.push(new Token(ExprLexer.INT, String.valueOf(-v1)));
+                    v1 = Integer.parseInt(tokenStack.popTop().getText());
+                    tokenStack.push(new Token(ExprLexer.INT, String.valueOf(-v1)));
                     break;
 
                 case ExprLexer.INT:
-                    pekerparter.push(currentToken);
+                    tokenStack.push(currentToken);
                     break;
 
                 case ExprLexer.NL:
                     System.out.print("Result: ");
-                    System.out.println(pekerparter.top().getText());
-                    return Integer.parseInt(pekerparter.popTop().getText());
-//                    break;
-
-                default:
-                    System.out.println("shit broke yo");
-                    System.out.print(currentToken.getType() + " ");
-                    System.out.println(currentToken.getText());
-                    break;
+                    System.out.println(tokenStack.top().getText());
+                    return Integer.parseInt(tokenStack.popTop().getText());
 
             }
 
@@ -82,12 +81,5 @@ public class Postfix {
         return -1;
     }
 
-    public static void main(String args[]) {
-
-        evalPostfix("3 # 3 8 4 / 2 ^ * 9 - + \n");
-        evalPostfix("6 2 - 2 ^ 7 2 # * + \n");
-        evalPostfix("2 4 + 2 ^ 2 4 + / \n");
-
-    }
 
 }

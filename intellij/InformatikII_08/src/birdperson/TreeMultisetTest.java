@@ -1,5 +1,6 @@
 package birdperson;
 
+import LinkedListMultiset.Multiset;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
 
@@ -21,6 +22,34 @@ public class TreeMultisetTest {
         assertTrue(tree.isEmpty());
     }
 
+    @org.junit.Test
+    public void containsTwo() throws Exception {
+        Multiset<String> tree = new TreeMultiset<>();
+        assertTrue(tree.size() == 0);
+        tree.add("Pimmelbert");
+        tree.add("Pimmelbert");
+        tree.add("Pimmelbert");
+        tree.add("Pimmelbert");
+        tree.add("Pimmelbert");
+        tree.add("Pimmelbert");
+        tree.add("Pimmelbert");
+        tree.add("Pimmelpeter");
+        tree.add("Pimmelpeter");
+        tree.add("Pimmelpeter");
+        tree.add("Pimmelpeter");
+        tree.add("Pimmelpeter");
+        tree.add("Pimmelsven");
+        tree.add("Pimmelsven");
+        tree.add("Pimmelsven");
+        tree.add("Pimmelmartin");
+        tree.add("Pimmelmartin");
+        tree.add("Pimmelmartin");
+        tree.add("Pimmelmartin");
+        tree.add("Pimmelmartin");
+
+        System.out.println(tree);
+    }
+
 
     static String readFile(String path, Charset encoding)
             throws IOException {
@@ -28,7 +57,7 @@ public class TreeMultisetTest {
         return new String(encoded, encoding);
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testFaust() throws Exception {
 
         try {
@@ -43,7 +72,7 @@ public class TreeMultisetTest {
         }
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testHalstead() throws Exception {
 
         CharStream input = new ANTLRFileStream("/home/lukas/Code/workspace/intellij/InformatikII_06/files/Beispiel.c");

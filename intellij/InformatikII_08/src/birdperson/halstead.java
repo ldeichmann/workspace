@@ -8,6 +8,7 @@ import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Token;
 
+@SuppressWarnings("Duplicates")
 public class halstead extends Halstead {
 
     public static void evalHalstead(CharStream HalsteadStream) {

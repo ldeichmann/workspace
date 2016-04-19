@@ -37,7 +37,6 @@ public class Heap<E extends Comparable<E>> implements PriorityQueue<E>{
     }
 
 
-    // TODO Why the fuck does this work?
     private int Vater(int i) {
         if (i == 1)
             return i;
@@ -52,13 +51,6 @@ public class Heap<E extends Comparable<E>> implements PriorityQueue<E>{
             array[i-1] = wert;
             i=Vater(i);
         }
-
-		/*
-		 * int Vater = (i - 1) / 2; E Unten = A[i - 1]; while (i > 1 &&
-		 * Unten.compareTo(A[Vater]) > 0) { Unten = A[i - 1]; A[i - 1] =
-		 * A[Vater]; A[Vater] = Unten; i = Vater; Vater = (Vater - 1) / 2; }
-		 * //A[i ] = Unten;
-		 */
     }
 
     public E extractMax() {

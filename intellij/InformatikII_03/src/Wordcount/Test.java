@@ -21,13 +21,11 @@ public class Test {
 
 	@org.junit.Test
 	public void testFaust() {
-		
 		try {
 			InputStream in;
 			String content = readFile("/home/lukas/Documents/Faust.txt", StandardCharsets.UTF_8);
 			in = new ByteArrayInputStream( content.getBytes() );
 			assertTrue(Wc.countWords(in) == 30628);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 			fail("IO Error");

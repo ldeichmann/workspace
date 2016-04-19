@@ -88,7 +88,7 @@ public class Halstead {
             }
             t = lex.nextToken();
         }
-        list(operand, operator);
+//        list(operand, operator);
         System.out.println("Programmlänge : "
                 + ProgramLength(operand, operator));
         System.out.println("Anzahl der Operatoren: " + operator.size());

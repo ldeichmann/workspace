@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Heap<E extends Comparable<E>> implements PriorityQueue<E>{
 
-    int länge;
-    int heapgroeße;
+    int laenge;
+    int heapsize;
     E[] array;
 
     @SafeVarargs
@@ -14,25 +14,25 @@ public class Heap<E extends Comparable<E>> implements PriorityQueue<E>{
     }
 
     public Heap(int len) {
-        länge = len;
-        heapgroeße = 0;
+        laenge = len;
+        heapsize = 0;
         array=newArray(len);
         //A = (E[]) new Object[len];
     }
 
     public Heap(E[] b) {
         array = newArray(b.length);
-        länge = b.length;
-        heapgroeße = 0;
+        laenge = b.length;
+        heapsize = 0;
         for (int i = 0; i < b.length; i++) {
             insert(b[i]);
         }
     }
 
     public void insert(E e) {
-        heapgroeße++;
-        array[heapgroeße-1] = e;
-        upHeap(heapgroeße);
+        heapsize++;
+        array[heapsize-1] = e;
+        upHeap(heapsize);
 
     }
 
@@ -63,8 +63,8 @@ public class Heap<E extends Comparable<E>> implements PriorityQueue<E>{
 
     public E extractMax() {
         E Wurzel = array[0];
-        heapgroeße--;
-        array[0] = array[heapgroeße];
+        heapsize--;
+        array[0] = array[heapsize];
         heapify(0);
         return Wurzel;
     }
@@ -79,11 +79,11 @@ public class Heap<E extends Comparable<E>> implements PriorityQueue<E>{
     private int maxkind(int i){
         int lk = i*2+1;
         int rk = i*2+2;
-        if(lk > heapgroeße-1 && rk < heapgroeße-1)
+        if(lk > heapsize-1 && rk < heapsize-1)
             return rk;
-        if(rk > heapgroeße-1 && lk < heapgroeße-1)
+        if(rk > heapsize-1 && lk < heapsize-1)
             return lk;
-        if(rk > heapgroeße-1 && lk > heapgroeße-1)
+        if(rk > heapsize-1 && lk > heapsize-1)
             return i;
         if(array[lk].compareTo(array[rk]) > 0)
             return lk;
@@ -106,7 +106,7 @@ public class Heap<E extends Comparable<E>> implements PriorityQueue<E>{
 
     public String toString() {
         String ausgabe = "{";
-        for (int i = 0; i < heapgroeße ; i++) {
+        for (int i = 0; i < heapsize ; i++) {
             ausgabe = ausgabe + " " + array[i];
         }
         return ausgabe + " }";

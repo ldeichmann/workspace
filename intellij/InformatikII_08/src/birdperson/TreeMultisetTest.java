@@ -25,27 +25,13 @@ public class TreeMultisetTest {
     @org.junit.Test
     public void containsTwo() throws Exception {
         Multiset<String> tree = new TreeMultiset<>();
-        assertTrue(tree.size() == 0);
-        tree.add("Pimmelbert");
-        tree.add("Pimmelbert");
-        tree.add("Pimmelbert");
-        tree.add("Pimmelbert");
-        tree.add("Pimmelbert");
-        tree.add("Pimmelbert");
-        tree.add("Pimmelbert");
-        tree.add("Pimmelpeter");
-        tree.add("Pimmelpeter");
-        tree.add("Pimmelpeter");
-        tree.add("Pimmelpeter");
-        tree.add("Pimmelpeter");
-        tree.add("Pimmelsven");
-        tree.add("Pimmelsven");
-        tree.add("Pimmelsven");
-        tree.add("Pimmelmartin");
-        tree.add("Pimmelmartin");
-        tree.add("Pimmelmartin");
-        tree.add("Pimmelmartin");
-        tree.add("Pimmelmartin");
+        tree.add("Bert");
+        tree.add("Peter");
+        tree.add("Peter");
+        tree.add("Peter");
+        tree.add("Peter");
+        tree.add("Peter");
+        assertTrue(tree.distinct() == 2);
 
         System.out.println(tree);
     }
@@ -57,7 +43,7 @@ public class TreeMultisetTest {
         return new String(encoded, encoding);
     }
 
-//    @org.junit.Test
+    @org.junit.Test
     public void testFaust() throws Exception {
 
         try {
@@ -72,10 +58,10 @@ public class TreeMultisetTest {
         }
     }
 
-//    @org.junit.Test
+    @org.junit.Test
     public void testHalstead() throws Exception {
 
-        CharStream input = new ANTLRFileStream("/home/lukas/Code/workspace/intellij/InformatikII_06/files/Beispiel.c");
+        CharStream input = new ANTLRFileStream("/home/lukas/Code/workspace/intellij/InformatikII_06/files/main.c");
         halstead.evalHalstead(input);
         assertTrue(true);
     }

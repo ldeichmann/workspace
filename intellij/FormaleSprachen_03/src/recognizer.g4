@@ -1,44 +1,42 @@
 grammar recognizer;
 
-expr: INT | ID
-|'(' expr ')'
-|expr FAC
-|<assoc=right> expr POW expr
-|expr MUL expr
-|expr DIV expr
-|expr ADD expr
-|expr SUB expr
-|expr LT expr
-|expr GT expr
-|ID EQ expr
+script: (block)*?;
+
+block: variable ';'
+| expr ';'
 ;
+
+variable: var EQ expr;
+
+comparison: expr lt expr
+|expr gt expr;
+
+add: '+';
+sub: '-';
+mul: '*';
+div: '/';
+pow: '^';
+fac: '!';
+lt : '<';
+gt : '>';
+
+expr: val_or_var
+|'(' expr ')'
+|expr fac
+|<assoc=right> expr pow expr
+|expr mul expr
+|expr div expr
+|expr add expr
+|expr sub expr
+;
+
+val_or_var: val | var;
+
+val: INT;
+var: ID;
 
 INT:
 [0-9]+;
-
-ADD:
-'+';
-
-SUB:
-'-';
-
-MUL:
-'*';
-
-DIV:
-'/';
-
-POW:
-'^';
-
-FAC:
-'!';
-
-LT:
-'<';
-
-GT:
-'>';
 
 EQ:
 '=';

@@ -4,6 +4,7 @@ script: (block)*?;
 
 block: variable ';'
 | expr ';'
+| comparison ';'
 ;
 
 variable: var EQ expr;

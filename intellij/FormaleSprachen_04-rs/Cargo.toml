@@ -1,0 +1,6 @@
+[package]
+name = "FormaleSprachen_04-rs"
+version = "0.1.0"
+authors = ["Lukas Deichmann <lukasdeichmann+github@gmail.com>"]
+
+[dependencies]

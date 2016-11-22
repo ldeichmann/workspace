@@ -1,5 +1,6 @@
 use std::fmt;
 use std::str::Chars;
+use std::io::{stdin,stdout,Write};
 
 #[derive(Debug,PartialEq,Clone)]
 enum TokenType {
@@ -142,10 +143,11 @@ impl<'a> Parser<'a> {
 
     pub fn match_token(&mut self, t: TokenType) {
         if self.lookahead.token_type == t {
-            println!("Matching {}", t);
+//            println!("Matching {}", t);
             self.consume();
         } else {
-            println!("Expected {}, found {}", t, self.lookahead.token_type)
+            println!("Expected {}, found {}", t, self.lookahead.token_type);
+            panic!("Expected {}, found {}", t, self.lookahead.token_type);
         }
     }
 
@@ -249,7 +251,13 @@ fn new_parser(lex: &mut Lexer) -> Parser {
 }
 
 fn main() {
-    let mut lex = new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4+ \n".to_string());
+    let mut s=String::new();
+    print!("Please enter some text: ");
+    let _=stdout().flush();
+    stdin().read_line(&mut s).expect("Did not enter a correct string");
+
+//    let mut lex = new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4+ \n".to_string());
+    let mut lex = new_lexer(s);
     lex.lex();
     println!("{:?}", lex.tokens);
     while let Some(i) = lex.next_token() {

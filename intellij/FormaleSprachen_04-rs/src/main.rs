@@ -249,13 +249,44 @@ fn new_parser(lex: &mut Lexer) -> Parser {
 }
 
 fn main() {
-    let mut lex = new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n".to_string());
+    let mut lex = new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4+ \n".to_string());
     lex.lex();
     println!("{:?}", lex.tokens);
     while let Some(i) = lex.next_token() {
         println!("{}", i);
     }
     lex.reset_counter();
+    let mut parser: Parser = new_parser(&mut lex);
+    parser.statlist();
+}
+
+#[test]
+fn test_lexer() {
+    let mut lex = new_lexer("-5-5 \n".to_string());
+    lex.lex();
+    assert!(lex.tokens[0].token_type == TokenType::SUB);
+    assert!(lex.tokens[1].token_type == TokenType::INT);
+    assert!(lex.tokens[2].token_type == TokenType::SUB);
+    assert!(lex.tokens[3].token_type == TokenType::INT);
+    assert!(lex.tokens[4].token_type == TokenType::NL);
+    assert!(lex.tokens[5].token_type == TokenType::EOF);
+
+}
+
+#[test]
+fn test_parser() {
+    let mut lex = new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4+1 \n".to_string());
+    lex.lex();
+    let mut parser: Parser = new_parser(&mut lex);
+    parser.statlist();
+    assert!(true);
+}
+
+#[test]
+#[should_panic]
+fn test_parser_error() {
+    let mut lex = new_lexer("-5-5+ \n".to_string());
+    lex.lex();
     let mut parser: Parser = new_parser(&mut lex);
     parser.statlist();
 }

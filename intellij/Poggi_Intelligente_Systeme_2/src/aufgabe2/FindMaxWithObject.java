@@ -9,9 +9,11 @@ public class FindMaxWithObject {
 		System.out.println(values.length + " " + values[0].length);
 		setNachbarn(values);
 		ArrayList<int[]> labels = readLabel("label0.csv");
-		List<Value> mylabel = findMax3(values, 50);
-//		fScore(labels, mylabel);
-//		System.out.println((labels));
+		List<Value> mylabel = findMax3(values, 40);
+		fScore(labels, mylabel);
+
+//		System.out.println(mylabel);
+//		System.out.println(mylabel.size());
 	}
 
 	public static void printValues(Value[][] values) {
@@ -41,14 +43,14 @@ public class FindMaxWithObject {
 		return ret;
 	}
 
-	public static double fScore(ArrayList<int[]> labels, ArrayList<Value> mylabels) {
+	public static double fScore(ArrayList<int[]> labels, List<Value> mylabels) {
 		double correctLabels = 0;
 		double recall;
 		double precision;
 		double fscore;
 		for (Value i : mylabels) {
 			for (int[] j : labels) {
-				if (i.getPosition()[0] == j[0] && i.getPosition()[1] == j[1]) {
+				if (i.getPosition()[0] == j[1] && i.getPosition()[1] == j[0]) {
 					correctLabels += 1;
 					System.out.println("Found Label");
 				}
@@ -622,6 +624,27 @@ public class FindMaxWithObject {
 
 	public static Value findMaxNeighbour(Value[][] values, Value center, int range) {
 
+	    Value max = center;
+
+	    for (int i = 1; i <= range; i++) {
+            List<Value> neighbours = center.getNeighbours(values, i);
+            for (Value n: neighbours) {
+                if (max == null) {
+                    if (!n.isUsed()) {
+                        max = n;
+                    }
+                } else {
+                    if (!n.isUsed()) {
+                        n.setUsed(true);
+                        if (n.getVal() > max.getVal()) {
+                            max = n;
+                        }
+                    }
+                }
+            }
+        }
+
+        return max;
     }
 
 	public static List<Value> findMax3(Value[][] values, int neighbourRange) {
@@ -632,31 +655,32 @@ public class FindMaxWithObject {
             for (int j = 0; j < values[i].length; j++) {
 
                 Value current = values[i][j];
+                Value new_max = null;
                 if (current.isUsed()) {
                     continue;
                 }
 
                 if (currentMax == null) {
-                    currentMax = current;
+                    currentMax = findMaxNeighbour(values, current, neighbourRange);
                 }
 
-                for (Value n: current.getNeighbors()) {
-                    if (!n.isUsed()) {
-                        n.setUsed(true);
-                        if (n.getVal() > current.val) {
-                            currentMax = n;
-                            current = n;
-                            System.out.println(n.getVal());
-                        }
-                    }
+                while (currentMax != new_max && currentMax != null) {
+                	if (new_max != null) {
+						currentMax = new_max;
+					}
+                    new_max = findMaxNeighbour(values, currentMax, neighbourRange);
+                	if (new_max == null) {
+                		break;
+					}
+//                	System.out.println("new_max " + new_max + " currentMax " + currentMax);
                 }
 
-
-
+                System.out.println("Adding " + currentMax);
+                returnList.add(currentMax);
+                currentMax = null;
             }
 
         }
-
 
 	    return returnList;
     }

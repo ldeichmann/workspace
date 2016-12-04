@@ -2,6 +2,12 @@ mod token;
 mod lexer;
 mod parser;
 mod ast;
+mod expr_node;
+mod nodes;
+
+use ast::ast_t;
+use ast::AST;
+use expr_node::expr_node_t;
 
 //fn main() {
 //    let mut lex = lexer::new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4 \n".to_string());
@@ -22,18 +28,26 @@ fn main() {
     let t2 = token::Token{token_type: token::TokenType::DIV, content: "/".to_string()};
     let t3 = token::Token{token_type: token::TokenType::SUB, content: "-".to_string()};
     let t4 = token::Token{token_type: token::TokenType::MUL, content: "*".to_string()};
+    let t5 = token::Token{token_type: token::TokenType::MUL, content: "*".to_string()};
+    let t6 = token::Token{token_type: token::TokenType::INT, content: "5".to_string()};
 
-    let mut d = ast::new_ast(Some(t4), None);
+    let mut a = ast::new_ast(Some(t1), None);
     let mut b = ast::new_ast(Some(t2), None);
     let mut c = ast::new_ast(Some(t3), None);
-    let mut a = ast::new_ast(Some(t1), None);
+    let mut d = ast::new_ast(Some(t4), None);
 
-    c.add_child(&mut d);
-    a.add_child(&mut c);
-//    a.add_child(&mut b);
+    let mut e = expr_node::ExprNode::new(t5);
+
+    let mut f = nodes::IntNode::new(t6);
+
+    c.add_child_ast(d);
+    a.add_child_ast(c);
+    a.add_child(Box::new(e));
+    a.add_child(Box::new(f));
 
     println!("{}", a.to_string_tree());
 
+//    a.fuck();
 }
 
 #[test]

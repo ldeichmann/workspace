@@ -10,7 +10,6 @@ pub enum TokenType {
     SUB,
     MUL,
     DIV,
-    UMINUS,
     RBRACE,
     LBRACE
 }

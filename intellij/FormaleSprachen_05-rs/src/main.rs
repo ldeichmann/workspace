@@ -1,8 +1,8 @@
 mod token;
 mod lexer;
 mod parser;
-mod ast;
-mod expr_node;
+//mod ast;
+//mod expr_node;
 mod nodes;
 
 use nodes::AstTrait;
@@ -26,19 +26,17 @@ use nodes::AstTrait;
 
 fn main() {
 
-    let t1 = token::Token{token_type: token::TokenType::ADD, content: "+".to_string()};
-    let t2 = token::Token{token_type: token::TokenType::DIV, content: "/".to_string()};
-    let t3 = token::Token{token_type: token::TokenType::SUB, content: "-".to_string()};
-    let t4 = token::Token{token_type: token::TokenType::MUL, content: "*".to_string()};
-    let t5 = token::Token{token_type: token::TokenType::MUL, content: "*".to_string()};
-    let t6 = token::Token{token_type: token::TokenType::INT, content: "5".to_string()};
-
-    let mut a = nodes::Nodes::new(Some(t1));
-    let mut b = nodes::Nodes::new(Some(t6));
-
     a.add_child(b);
 
-    println!("{}", a.to_string_tree())
+    let mut lex = lexer::new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4 \n".to_string());
+    lex.lex();
+    lex.reset_counter();
+    let mut par = parser::new_parser(&mut lex);
+    par.statlist();
+
+
+
+    println!("{}", par.get_root().to_string_tree())
 
 
 //    let mut a = ast::new_ast(Some(t1), None);

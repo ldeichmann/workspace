@@ -3,9 +3,9 @@ use std::fmt;
 
 #[derive(PartialEq, Clone)]
 pub enum EvalType {
-    T_INVALID,
-    T_INTEGER,
-    T_VECTOR
+    TInvalid,
+    TInteger,
+    TVector
 }
 
 pub enum Nodes {
@@ -14,6 +14,7 @@ pub enum Nodes {
     MulNode(Box<Nodes>),
     DivNode(Box<Nodes>),
     IntNode(Box<Nodes>),
+    UMinusNode(Box<Nodes>),
     ExprNode(EvalType, Box<Nodes>),
     AST(Option<token::Token>, Vec<Box<Nodes>>)
 }
@@ -79,7 +80,7 @@ impl AstTrait for Nodes {
                 token::TokenType::SUB => {
                     let tmp = x.clone();
                     let a = Nodes::AST(Some(x), vec![]);
-                    let b = Nodes::ExprNode(EvalType::T_INVALID, Box::new(a));
+                    let b = Nodes::ExprNode(EvalType::TInvalid, Box::new(a));
                     match tmp.token_type {
                         token::TokenType::ADD => Nodes::AddNode(Box::new(b)),
                         token::TokenType::SUB => Nodes::SubNode(Box::new(b)),
@@ -91,7 +92,7 @@ impl AstTrait for Nodes {
                 },
                 token::TokenType::INT => {
                     let a = Nodes::AST(Some(x), vec![]);
-                    let b = Nodes::ExprNode(EvalType::T_INTEGER, Box::new(a));
+                    let b = Nodes::ExprNode(EvalType::TInteger, Box::new(a));
                     Nodes::IntNode(Box::new(b))
                 },
                 _ => {
@@ -107,14 +108,15 @@ impl AstTrait for Nodes {
     fn get_node_type(&self) -> token::TokenType {
         if !self.is_nil() {
             match *self {
-                Nodes::AST(ref to, ref vn) => {
+                Nodes::AST(ref to, _) => {
                     to.clone().unwrap().token_type
                 },
-                Nodes::ExprNode(ref e, ref n) => n.get_node_type(),
+                Nodes::ExprNode(_, ref n) |
                 Nodes::AddNode(ref n) |
                 Nodes::SubNode(ref n) |
                 Nodes::MulNode(ref n) |
                 Nodes::DivNode(ref n) |
+                Nodes::UMinusNode(ref n) |
                 Nodes::IntNode(ref n) => n.get_node_type(),
             }
         } else {
@@ -124,16 +126,15 @@ impl AstTrait for Nodes {
 
     fn add_child(&mut self, t: Nodes) {
         match *self {
-            Nodes::AST(ref to, ref mut vn) => {
+            Nodes::AST(_, ref mut vn) => {
                 vn.push(Box::new(t))
             },
-            Nodes::ExprNode(ref e, ref mut n) => {
-                n.add_child(t)
-            },
+            Nodes::ExprNode(_, ref mut n) |
             Nodes::AddNode(ref mut n) |
             Nodes::SubNode(ref mut n) |
             Nodes::MulNode(ref mut n) |
             Nodes::DivNode(ref mut n) |
+            Nodes::UMinusNode(ref mut n) |
             Nodes::IntNode(ref mut n) => {
                 n.add_child(t)
             },
@@ -142,30 +143,32 @@ impl AstTrait for Nodes {
 
     fn is_nil(&self) -> bool {
         match *self {
-            Nodes::AST(ref to, ref vn) => {
-                if let Some(x) = to.clone() {
+            Nodes::AST(ref to, _) => {
+                if let Some(_) = to.clone() {
                     false
                 } else {
                     true
                 }
             },
-            Nodes::ExprNode(ref e, ref n) => n.is_nil(),
+            Nodes::ExprNode(_, ref n) |
             Nodes::AddNode(ref n) |
             Nodes::SubNode(ref n) |
             Nodes::MulNode(ref n) |
             Nodes::DivNode(ref n) |
+            Nodes::UMinusNode(ref n) |
             Nodes::IntNode(ref n) => n.is_nil(),
         }
     }
 
     fn get_children(&self) -> &Vec<Box<Nodes>> {
         match *self {
-            Nodes::AST(ref to, ref vn) => vn,
-            Nodes::ExprNode(ref e, ref n) => n.get_children(),
+            Nodes::AST(_, ref vn) => vn,
+            Nodes::ExprNode(_, ref n) |
             Nodes::AddNode(ref n) |
             Nodes::SubNode(ref n) |
             Nodes::MulNode(ref n) |
             Nodes::DivNode(ref n) |
+            Nodes::UMinusNode(ref n) |
             Nodes::IntNode(ref n) => n.get_children(),
         }
     }
@@ -178,17 +181,18 @@ impl fmt::Display for Nodes {
             Nodes::SubNode(ref n) |
             Nodes::MulNode(ref n) |
             Nodes::DivNode(ref n) |
+            Nodes::UMinusNode(ref n) |
             Nodes::IntNode(ref n) => n.to_string(),
             Nodes::ExprNode(ref e, ref n) => {
                 let mut a = n.to_string();
                 let t = e.clone();
-                if t != EvalType::T_INVALID {
-                    let b = if t == EvalType::T_INTEGER { "<type=T_INTEGER>" } else { "<type=T_VECTOR>" };
+                if t != EvalType::TInvalid {
+                    let b = if t == EvalType::TInteger { "<type=TInteger>" } else { "<type=TVector>" };
                     a.push_str(b);
                 }
                 a
             },
-            Nodes::AST(ref t, ref vn) => {
+            Nodes::AST(ref t, _) => {
                 if let Some(x) = t.clone() {
                     x.to_string()
                 } else {
@@ -215,21 +219,24 @@ impl ExprTrait for Nodes {
                 let ref left = c_all[0];
                 let ref right = c_all[1];
 
-                if left.get_eval_type() == EvalType::T_INTEGER && right.get_eval_type() == EvalType::T_INTEGER {
-                    EvalType::T_INTEGER
-                } else if left.get_eval_type() == EvalType::T_VECTOR && right.get_eval_type() == EvalType::T_VECTOR {
-                    EvalType::T_VECTOR
+                if left.get_eval_type() == EvalType::TInteger && right.get_eval_type() == EvalType::TInteger {
+                    EvalType::TInteger
+                } else if left.get_eval_type() == EvalType::TVector && right.get_eval_type() == EvalType::TVector {
+                    EvalType::TVector
                 } else {
-                    EvalType::T_INVALID
+                    EvalType::TInvalid
                 }
-            }
-            Nodes::IntNode(ref n) => {
-                EvalType::T_INTEGER
             },
-            Nodes::ExprNode(ref e, ref n) => {
+            Nodes::UMinusNode(ref n) => {
+                n.get_children()[0].get_eval_type()
+            }
+            Nodes::IntNode(_) => {
+                EvalType::TInteger
+            },
+            Nodes::ExprNode(_, _) => {
                 unimplemented!()
             },
-            Nodes::AST(ref t, ref vn) => {
+            Nodes::AST(_, _) => {
                 unimplemented!()
             },
         }
@@ -245,7 +252,7 @@ impl BinaryTrait for Nodes {
             token::TokenType::SUB => {
                 let tmp = t.clone();
                 let a = Nodes::AST(Some(t), vec![]);
-                let mut b = Nodes::ExprNode(EvalType::T_INVALID, Box::new(a));
+                let mut b = Nodes::ExprNode(EvalType::TInvalid, Box::new(a));
                 b.add_child(l);
                 b.add_child(r);
                 match tmp.token_type {
@@ -265,13 +272,15 @@ impl BinaryTrait for Nodes {
 impl UnaryTrait for Nodes {
     fn new_un(l: Nodes, t: token::Token) -> Self {
         match t.token_type {
+            token::TokenType::SUB |
             token::TokenType::INT => {
                 let tmp = t.clone();
                 let a = Nodes::AST(Some(t), vec![]);
-                let mut b = Nodes::ExprNode(EvalType::T_INVALID, Box::new(a));
+                let mut b = Nodes::ExprNode(EvalType::TInvalid, Box::new(a));
                 b.add_child(l);
                 match tmp.token_type {
                     token::TokenType::INT => Nodes::IntNode(Box::new(b)),
+                    token::TokenType::SUB => Nodes::UMinusNode(Box::new(b)),
                     // This should never happen
                     _ => unimplemented!()
                 }
@@ -315,7 +324,7 @@ impl UnaryTrait for Nodes {
 //    fn new(t: token::Token) -> Self {
 //        let a = ExprNode {
 //            ast: new_ast(Some(t), None),
-//            eval_type: expr_node::T_INTEGER
+//            eval_type: expr_node::TInteger
 //        };
 //        AddNode {
 //            expr: a
@@ -331,7 +340,7 @@ impl UnaryTrait for Nodes {
 //    fn new(t: token::Token) -> Self {
 //        let a = ExprNode {
 //            ast: new_ast(Some(t), None),
-//            eval_type: expr_node::T_INTEGER
+//            eval_type: expr_node::TInteger
 //        };
 //        IntNode {
 //            expr: a

@@ -1,8 +1,6 @@
 mod token;
 mod lexer;
 mod parser;
-//mod ast;
-//mod expr_node;
 mod nodes;
 
 use nodes::AstTrait;
@@ -32,28 +30,10 @@ fn main() {
     let mut par = parser::new_parser(&mut lex);
     par.statlist();
 
+    let n = par.get_root();
 
+    println!("{}", n.to_string_tree())
 
-    println!("{}", par.get_root().to_string_tree())
-
-
-//    let mut a = ast::new_ast(Some(t1), None);
-//    let mut b = ast::new_ast(Some(t2), None);
-//    let mut c = ast::new_ast(Some(t3), None);
-//    let mut d = ast::new_ast(Some(t4), None);
-//
-//    let mut e = expr_node::ExprNode::new(t5);
-//
-//    let mut f = nodes::IntNode::new(t6);
-//
-//    c.add_child(d);
-//    a.add_child(c);
-//    a.add_child(Box::new(e));
-//    a.add_child(Box::new(f));
-//
-//    println!("{}", a.to_string_tree());
-//
-//    a.fuck();
 }
 
 #[test]

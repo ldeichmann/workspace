@@ -272,7 +272,7 @@ impl BinaryTrait for Nodes {
 impl UnaryTrait for Nodes {
     fn new_un(l: Nodes, t: token::Token) -> Self {
         match t.token_type {
-            token::TokenType::SUB |
+            token::TokenType::UMINUS |
             token::TokenType::INT => {
                 let tmp = t.clone();
                 let a = Nodes::AST(Some(t), vec![]);
@@ -280,7 +280,7 @@ impl UnaryTrait for Nodes {
                 b.add_child(l);
                 match tmp.token_type {
                     token::TokenType::INT => Nodes::IntNode(Box::new(b)),
-                    token::TokenType::SUB => Nodes::UMinusNode(Box::new(b)),
+                    token::TokenType::UMINUS => Nodes::UMinusNode(Box::new(b)),
                     // This should never happen
                     _ => unimplemented!()
                 }

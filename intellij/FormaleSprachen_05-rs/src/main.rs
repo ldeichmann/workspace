@@ -26,8 +26,6 @@ use nodes::AstTrait;
 
 fn main() {
 
-    a.add_child(b);
-
     let mut lex = lexer::new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4 \n".to_string());
     lex.lex();
     lex.reset_counter();

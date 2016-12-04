@@ -112,7 +112,8 @@ impl<'a> Parser<'a> {
                 nodes::Nodes::new_un(n, t)
             },
             token::TokenType::SUB => {
-                let t = self.lookahead.clone();
+                let mut t = self.lookahead.clone();
+                t.token_type = token::TokenType::UMINUS;
                 self.match_token(token::TokenType::SUB);
                 let n = self.term();
                 nodes::Nodes::new_un(n, t)

@@ -2,8 +2,10 @@ mod token;
 mod lexer;
 mod parser;
 mod nodes;
+mod visitor;
 
 use nodes::AstTrait;
+use visitor::Visitor;
 
 //use ast::ast_t;
 //use ast::AST;
@@ -24,7 +26,7 @@ use nodes::AstTrait;
 
 fn main() {
 
-    let mut lex = lexer::new_lexer("-5-5 + 5 - 3 / 2 \n (5-2)/2 \n 4 \n".to_string());
+    let mut lex = lexer::new_lexer("-5-5 + 5 - 3 / 2 \n".to_string());
     lex.lex();
     lex.reset_counter();
     let mut par = parser::new_parser(&mut lex);
@@ -32,7 +34,10 @@ fn main() {
 
     let n = par.get_root();
 
-    println!("{}", n.to_string_tree())
+    let v = visitor::eval_visitor.visit(Box::new(n));
+
+//    println!("{}", n.to_string_tree())
+    println!("Result: {}", v)
 
 }
 

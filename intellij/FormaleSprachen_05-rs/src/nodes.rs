@@ -8,6 +8,7 @@ pub enum EvalType {
     TVector
 }
 
+#[derive(Clone)]
 pub enum Nodes {
     AddNode(Box<Nodes>),
     SubNode(Box<Nodes>),

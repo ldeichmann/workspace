@@ -1,14 +1,15 @@
 use nodes;
-use nodes::{Nodes, AstTrait, ExprTrait};
-use std::str::FromStr;
+use nodes::{AstTrait};
 
 pub trait Visitor<T> {
     fn visit(&self, Box<nodes::Nodes>) -> T;
 }
 
-pub struct eval_visitor;
+pub struct EvalVisitor;
 
-impl Visitor<f32> for eval_visitor {
+pub struct StringVisitor;
+
+impl Visitor<f32> for EvalVisitor {
     fn visit(&self, no: Box<nodes::Nodes>) -> f32 {
         match *no {
             nodes::Nodes::AddNode(ref n) => {
@@ -46,14 +47,87 @@ impl Visitor<f32> for eval_visitor {
             },
             nodes::Nodes::AST(ref t, _) => {
                 let to = t.clone();
-                println!("{}", no);
+//                println!("{}", no);
                 match to {
                     Some(x) => {
-                        println!("{}", x);
+//                        println!("{}", x);
                         match x.content.parse::<f32>() {
                             Ok(y) => y,
                             Err(_) => unimplemented!()
                         }
+                    },
+                    None => {
+                        let c = no.get_children();
+                        let c0 = c[0].clone();
+                        self.visit(c0)
+                    }
+                }
+            }
+        }
+    }
+}
+
+impl Visitor<String> for StringVisitor {
+    fn visit(&self, no: Box<nodes::Nodes>) -> String {
+        match *no {
+            nodes::Nodes::AddNode(ref n) => {
+                let c = n.get_children();
+                let c0 = c[0].clone();
+                let c1 = c[1].clone();
+                let mut a = String::new();
+                a.push_str(self.visit(c0).as_str());
+                a.push_str(" + ");
+                a.push_str(self.visit(c1).as_str());
+                a
+            },
+            nodes::Nodes::SubNode(ref n) => {
+                let c = n.get_children();
+                let c0 = c[0].clone();
+                let c1 = c[1].clone();
+                let mut a = String::new();
+                a.push_str(self.visit(c0).as_str());
+                a.push_str(" - ");
+                a.push_str(self.visit(c1).as_str());
+                a
+            },
+            nodes::Nodes::MulNode(ref n) => {
+                let c = n.get_children();
+                let c0 = c[0].clone();
+                let c1 = c[1].clone();
+                let mut a = String::new();
+                a.push_str(self.visit(c0).as_str());
+                a.push_str(" * ");
+                a.push_str(self.visit(c1).as_str());
+                a
+            },
+            nodes::Nodes::DivNode(ref n) => {
+                let c = n.get_children();
+                let c0 = c[0].clone();
+                let c1 = c[1].clone();
+                let mut a = String::new();
+                a.push_str(self.visit(c0).as_str());
+                a.push_str(" / ");
+                a.push_str(self.visit(c1).as_str());
+                a
+            },
+            nodes::Nodes::UMinusNode(ref n) => {
+                let c = n.get_children();
+                let c0 = c[0].clone();
+                let mut a = String::new();
+                a.push_str(" -");
+                a.push_str(self.visit(c0).as_str());
+                a
+            },
+            nodes::Nodes::ExprNode(_, ref n) |
+            nodes::Nodes::IntNode(ref n) => {
+                self.visit(n.clone())
+            },
+            nodes::Nodes::AST(ref t, _) => {
+                let to = t.clone();
+//                println!("{}", no);
+                match to {
+                    Some(x) => {
+                        x.content
                     },
                     None => {
                         let c = no.get_children();

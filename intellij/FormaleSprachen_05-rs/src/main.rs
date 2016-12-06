@@ -33,11 +33,14 @@ fn main() {
     par.statlist();
 
     let n = par.get_root();
+    let o = n.clone();
+    println!("{}", n.to_string_tree());
 
-    let v = visitor::eval_visitor.visit(Box::new(n));
+    let v = visitor::EvalVisitor.visit(Box::new(n));
+    println!("Result: {}", v);
 
-//    println!("{}", n.to_string_tree())
-    println!("Result: {}", v)
+    let w = visitor::StringVisitor.visit(Box::new(o));
+    println!("Result: {}", w);
 
 }
 

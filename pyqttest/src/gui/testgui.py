@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'untitled.ui'
+#
+# Created by: PyQt5 UI code generator 5.7
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(667, 699)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout.setContentsMargins(10, 10, 10, 10)
+        self.verticalLayout.setSpacing(6)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.listView = QtWidgets.QListView(self.centralwidget)
+        self.listView.setObjectName("listView")
+        self.horizontalLayout.addWidget(self.listView, 0, QtCore.Qt.AlignLeft)
+        self.listView_2 = QtWidgets.QListView(self.centralwidget)
+        self.listView_2.setObjectName("listView_2")
+        self.horizontalLayout.addWidget(self.listView_2)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
+        self.horizontalLayout_2.setContentsMargins(10, 10, -1, 10)
+        self.horizontalLayout_2.setSpacing(10)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox.setEnabled(True)
+        self.groupBox.setMinimumSize(QtCore.QSize(200, 30))
+        self.groupBox.setMaximumSize(QtCore.QSize(200, 80))
+        self.groupBox.setFlat(False)
+        self.groupBox.setObjectName("groupBox")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.groupBox)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.pushButton_3 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_3.setMinimumSize(QtCore.QSize(26, 26))
+        self.pushButton_3.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.horizontalLayout_3.addWidget(self.pushButton_3)
+        self.pushButton = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton.setMinimumSize(QtCore.QSize(26, 26))
+        self.pushButton.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_3.addWidget(self.pushButton)
+        self.pushButton_4 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_4.setMinimumSize(QtCore.QSize(26, 26))
+        self.pushButton_4.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.horizontalLayout_3.addWidget(self.pushButton_4)
+        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_2.setMinimumSize(QtCore.QSize(26, 26))
+        self.pushButton_2.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout_3.addWidget(self.pushButton_2)
+        self.horizontalLayout_2.addWidget(self.groupBox)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
+        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
+        self.horizontalSlider.setObjectName("horizontalSlider")
+        self.verticalLayout.addWidget(self.horizontalSlider)
+        self.gridLayout.addLayout(self.verticalLayout, 1, 0, 1, 1)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 667, 23))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.groupBox.setTitle(_translate("MainWindow", "Controls"))
+        self.pushButton_3.setText(_translate("MainWindow", "Next"))
+        self.pushButton.setText(_translate("MainWindow", "Play"))
+        self.pushButton_4.setText(_translate("MainWindow", "Stop"))
+        self.pushButton_2.setText(_translate("MainWindow", "Prev"))
+

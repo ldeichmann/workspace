@@ -24,6 +24,16 @@ public class TestLEvaluatorWithProps {
             setValue(ctx, getValue(ctx.e())); // like: int s() { return e(); }
         }
 
+        @Override
+        public void exitAssignment(LExprParser.AssignmentContext ctx) {
+            setValue(ctx, getValue(ctx.e()));
+        }
+
+        @Override
+        public void exitVariable(LExprParser.VariableContext ctx) {
+            setValue(ctx, getValue(ctx.ID()));
+        }
+
         public void exitBraces(LExprParser.BracesContext ctx) {
             setValue(ctx, getValue(ctx.e()));
         }

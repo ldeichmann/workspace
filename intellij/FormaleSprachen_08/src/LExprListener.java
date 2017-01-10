@@ -1,4 +1,4 @@
-// Generated from /home/cru/Code/workspace/intellij/FormaleSprachen_08/src/LExpr.g4 by ANTLR 4.5.3
+// Generated from /home/cru/Code/workspace/intellij/FormaleSprachen_08/src/LExpr.g4 by ANTLR 4.6
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -17,6 +17,18 @@ public interface LExprListener extends ParseTreeListener {
 	 */
 	void exitS(LExprParser.SContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Assignment}
+	 * labeled alternative in {@link LExprParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(LExprParser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Assignment}
+	 * labeled alternative in {@link LExprParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(LExprParser.AssignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Braces}
 	 * labeled alternative in {@link LExprParser#e}.
 	 * @param ctx the parse tree
@@ -28,6 +40,18 @@ public interface LExprListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBraces(LExprParser.BracesContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Variable}
+	 * labeled alternative in {@link LExprParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(LExprParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Variable}
+	 * labeled alternative in {@link LExprParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(LExprParser.VariableContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MulDiv}
 	 * labeled alternative in {@link LExprParser#e}.

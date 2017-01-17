@@ -46,7 +46,7 @@ public class mccabe {
 //            System.out.println(ctx.getChild(0));
             if (ctx.getChild(0).getText().equals("for")) {
 //                System.out.println(ctx.getChild(0));
-                setValue(ctx, 2);
+//                setValue(ctx, 2);
             }
             else if (ctx.getChild(0).getText().equals("if")) {
 //                System.out.println(ctx.getChild(0));
